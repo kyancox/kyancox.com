@@ -17,18 +17,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" style={{
-      backgroundColor: '#1b202c'
-    }}>
+    <html lang="en"
+      style={{
+        backgroundColor: ''
+      }}
+      suppressHydrationWarning
+    >
+      <body className={nunito_sans.className} >
       <ThemeProvider
         attribute="class"
-        defaultTheme="system"
+        defaultTheme="dark"
         enableSystem
       >
-        <body className={nunito_sans.className} >
           {children}
-        </body>
       </ThemeProvider>
+        </body>
     </html>
   );
 }

@@ -44,7 +44,7 @@ const NowPlaying = () => {
         return <div className='flex flex-col items-center justify-center space-y-1'>
             <div className='flex flex-row items-center justify-center space-x-2'>
                 <SpotifyLogo />
-                <p className='text-xl font-bold'>Currently playing:</p>
+                <p className='text-xl font-bold dark:text-white text-spotify'>Currently playing:</p>
             </div>
             <LoadingSpinner/>
         </div>;
@@ -54,7 +54,7 @@ const NowPlaying = () => {
         <div className='mx-4 space-y-2 '>
             <div className='flex flex-row items-center justify-start space-x-2'>
                 <SpotifyLogo />
-                <p className='text-xl font-bold'>Currently playing:</p>
+                <p className='text-xl font-bold dark:text-white text-spotify'>Currently playing:</p>
             </div>
             <div className='flex flex-row p-2.5 rounded-lg space-x-3 shadow-lg' style={{ backgroundColor: '#121212' }}>
                 <Image
@@ -67,7 +67,7 @@ const NowPlaying = () => {
                <div>
                  <div className='flex flex-row items-center justify-start space-x-2'>
                      <PlayingAnimation />
-                     <p className='font-bold text-lg overflow-clip' style={{ minWidth: '100px', maxWidth: '200px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{nowPlaying.title}</p>
+                     <p className='font-bold text-lg overflow-clip text-white' style={{ minWidth: '100px', maxWidth: '200px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{nowPlaying.title}</p>
                  </div>
                 
                  <p className='text-gray-400 text-sm'>{nowPlaying.artist}</p>
