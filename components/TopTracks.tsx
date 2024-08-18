@@ -56,8 +56,8 @@ const TopTracks = () => {
     }
 
     return (
-        <div className='lg:w-1/2 md:w-2/3 mx-4 my-4 space-y-2'>
-            <div className={`inline-flex flex-row items-center justify-start space-x-2 ${theme === 'dark' ? 'bg-spotify p-2 rounded-lg' : 'bg-spotify p-2 rounded-lg'}`}>
+        <div className='lg:w-1/2 md:w-2/3 mx-4 my-2 space-y-2'>
+            <div className={`inline-flex flex-row items-center justify-start space-x-2 bg-spotify p-2 rounded-lg`}>
                 <SpotifyLogo />
                 <p className='text-xl font-bold text-white dark:text-white'>Top tracks this month</p>
             </div>
