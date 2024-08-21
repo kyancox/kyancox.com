@@ -44,7 +44,7 @@ const NowPlaying = () => {
         return <div className='flex flex-col items-center justify-center space-y-1'>
              <div className={`inline-flex flex-row items-center justify-start space-x-2 bg-spotify p-2 rounded-lg`}>
                 <SpotifyLogo />
-                <p className='text-xl font-bold dark:text-white text-spotify'>Currently playing</p>
+                <p className='text-xl font-bold dark:text-white text-'>Currently playing</p>
             </div>
             <LoadingSpinner/>
         </div>;
@@ -54,9 +54,9 @@ const NowPlaying = () => {
         <div className='mx-4 my-2 space-y-2 '>
             <div className={`inline-flex flex-row items-center justify-start space-x-2 bg-spotify p-2 rounded-lg`}>
                 <SpotifyLogo />
-                <p className='text-xl font-bold dark:text-white text-spotify'>Currently playing</p>
+                <p className='text-xl font-bold dark:text-white text-white'>Currently playing</p>
             </div>
-            <div className='flex flex-row p-2.5 rounded-lg space-x-3 shadow-lg' style={{ backgroundColor: '#121212' }}>
+            <div className='flex flex-row p-2.5 rounded-lg space-x-3 shadow-lg min-w-36' style={{ backgroundColor: '#121212', }}>
                 <Image
                     src={nowPlaying.albumImageUrl}
                     alt={`${nowPlaying.title} album art`}
