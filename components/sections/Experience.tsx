@@ -94,7 +94,7 @@ const Experience = () => {
                     {Array.from({ length: count }).map((_, index) => (
                         <div
                             key={index}
-                            className={`w-2 h-2 rounded-full ${index + 1 === current ? 'bg-yellow-400' : 'bg-foreground'}`}
+                            className={`w-2 h-2 rounded-full transition duration-300 ${index + 1 === current ? 'bg-yellow-400' : 'bg-foreground'}`}
                         ></div>
                     ))}
                 </div>
