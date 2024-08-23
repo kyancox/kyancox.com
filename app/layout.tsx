@@ -3,6 +3,8 @@ import { Nunito_Sans } from "next/font/google";
 import "./globals.css";
 
 import { ThemeProvider } from "@/components/theme-provider";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/sections/Footer";
 
 const nunito_sans = Nunito_Sans({ subsets: ["latin"], display: 'swap', adjustFontFallback: false });
 
@@ -24,14 +26,16 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className={nunito_sans.className} >
-      <ThemeProvider
-        attribute="class"
-        defaultTheme="dark"
-        enableSystem
-      >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+        >
+          <Navbar />
           {children}
-      </ThemeProvider>
-        </body>
+          <Footer />
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
