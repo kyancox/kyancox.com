@@ -172,7 +172,9 @@ export default function Home() {
 
 
 
-      <p>Contact</p>
+      <section id="contact">
+      <p className="text-center text-5xl font-bold mb-6">Contact</p>
+      </section>
     </main>
   );
 }
