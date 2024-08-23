@@ -6,15 +6,13 @@ import { ReactTyped } from "react-typed";
 
 import NowPlaying from "@/components/NowPlaying";
 import TopTracks from "@/components/TopTracks";
-import headshot from '@/public/headshot.jpeg'
-import githublogo from '@/public/githublogo.svg'
-import linkedin from '@/public/linkedin.svg'
-import resume from '@/public/resume.svg'
 
 import { ModeToggle } from "@/components/DarkMode";
 import SkillCard from "@/components/SkillCard";
 import Experience from "@/components/sections/Experience";
 import Hero from "@/components/sections/Hero";
+import Contact from "@/components/sections/Contact";
+
 
 export default function Home() {
 
@@ -110,36 +108,8 @@ export default function Home() {
 
 
 
-      <section id="contact" className="my-12">
-        <p className="text-center text-5xl font-bold mb-6">Contact Me</p>
-        <div className="flex flex-row items-center justify-center space-x-2">
+     <Contact/>
 
-          <button className="py-2.5 px-3.5 rounded-full flex flex-row items-center justify-center space-x-2 hover:translate-y-[-2px] hover:opacity-60 transition-transform duration-300" style={{ backgroundColor: '#FFFFFF' }}
-            onClick={() => window.open('mailto:kyan@cs.wisc.edu', '_blank')}
-          >
-            <Image
-              src={'https://www.svgrepo.com/show/65426/email.svg'}
-              alt="Email logo"
-              width={24}
-              height={24}
-            />
-            <p className="text-lg font-semibold text-black">kyan@cs.wisc.edu</p>
-          </button>
-
-          <button className="py-2.5 px-3.5 rounded-full flex flex-row items-center justify-center space-x-1 hover:translate-y-[-2px] hover:opacity-60 transition-transform duration-300" style={{ backgroundColor: '#0078d4' }}
-            onClick={() => window.open('https://www.linkedin.com/in/kyancox', '_blank')}
-          >
-            <Image
-              src={linkedin}
-              alt="LinkedIn logo"
-              width={24}
-              height={24}
-            />
-            <p className="text-lg font-semibold text-white">@KyanCox</p>
-          </button>
-
-        </div>
-      </section>
     </main>
   );
 }

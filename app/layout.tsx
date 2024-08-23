@@ -20,9 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en"
-      style={{
-        backgroundColor: ''
-      }}
+      className="!scroll-smooth"
       suppressHydrationWarning
     >
       <body className={nunito_sans.className} >
