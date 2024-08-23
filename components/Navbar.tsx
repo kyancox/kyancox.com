@@ -2,7 +2,17 @@
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { ModeToggle } from './DarkMode'
-import { Menu, X } from 'lucide-react' // Add this import
+import { Menu, X } from 'lucide-react' 
+import {
+    Sheet,
+    SheetClose,
+    SheetContent,
+    SheetDescription,
+    SheetFooter,
+    SheetHeader,
+    SheetTitle,
+    SheetTrigger,
+  } from "@/components/ui/sheet"
 
 const Navbar = () => {
     const [isVisible, setIsVisible] = useState(true)
@@ -35,9 +45,9 @@ const Navbar = () => {
     ]
 
     return (
-        <nav className={`p-4 border-b shadow-2xl sticky top-0 transition-transform duration-300 bg-background ${isVisible ? 'translate-y-0' : (isMenuOpen ? '' : '-translate-y-full')}`}>
+        <nav className={`z-50 p-4 border-b shadow-2xl sticky top-0 transition-transform duration-300 bg-background ${isVisible ? 'translate-y-0' : (isMenuOpen ? '' : '-translate-y-full')}`}>
             <div className='flex items-center justify-between'>
-                <Link href='#home' className='ml-1 text-xl font-semibold hover:text-slate-400 transition duration-300'>Kyan Cox</Link>
+                <Link href='#home' className=' text-2xl font-semibold hover:text-slate-400 transition duration-300'>Kyan Cox</Link>
 
                 {/* Menu for medium screens and above */}
                 <div className='md:flex items-center justify-center space-x-5 hidden'>
@@ -48,33 +58,29 @@ const Navbar = () => {
                 </div>
 
                 {/* Hamburger menu for smaller screens */}
-                <div className='flex md:hidden'>
+                <SheetTrigger className='flex md:hidden'>
                     <button onClick={() => setIsMenuOpen(!isMenuOpen)} className='p-2'>
                         <Menu size={24} />
                     </button>
-                </div>
+                </SheetTrigger>
             </div>
 
             {/* Side menu for smaller screens */}
-            {isMenuOpen && (
-                <div className='fixed inset-y-0 right-0 w-1/2 bg-slate-800 h-screen shadow-lg p-4 transform transition-transform duration-300 ease-in-out'>
-                    <div className='flex flex-col items-end justify-between space-y-4 h-full'>
-                        <button onClick={() => setIsMenuOpen(!isMenuOpen)} className='p-2'>
-                            <X size={24} />
-                        </button>
-                        <div className='flex flex-col'>
-                            {buttons.map(({ name, route }) => (
-                                <Link key={name} href={route} className='text-lg font-semibold hover:text-slate-400 transition duration-200' onClick={() => setIsMenuOpen(false)}>{name}</Link>
-                            ))}
-                        </div>
-                        {/* Spacer to push ModeToggle to the bottom */}
-                        {/* <div className='flex-grow'></div>  */}
-                        <div>
-                            <ModeToggle />
-                        </div>
+            {<div className={`fixed inset-y-0 right-0 w-1/2 bg-slate-800 h-screen shadow-lg p-4 transform transition-transform duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`} style={{ overflow: 'hidden' }}>
+                <div className='flex flex-col items-end justify-between space-y-4 h-full'>
+                    <button onClick={() => setIsMenuOpen(!isMenuOpen)} className='p-2'>
+                        <X size={24} />
+                    </button>
+                    <div className='flex flex-col'>
+                        {buttons.map(({ name, route }) => (
+                            <Link key={name} href={route} className='text-lg font-semibold hover:text-slate-400 transition duration-200' onClick={() => setIsMenuOpen(false)}>{name}</Link>
+                        ))}
+                    </div>
+                    <div className='mt-auto'>
+                        <ModeToggle />
                     </div>
                 </div>
-            )}
+            </div>}
         </nav>
     )
 }
