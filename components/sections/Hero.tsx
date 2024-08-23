@@ -20,7 +20,7 @@ const Hero = () => {
             />
             <div className="">
                 <p className="text-start md:text-5xl text-3xl font-semibold">Hi 👋</p>
-                <p className="text-start md:text-7xl text-5xl font-medium">I'm <span className="font-bold">Kyan Cox</span>.</p>
+                <p className="text-start md:text-7xl text-5xl font-medium">I&apos;m <span className="font-bold">Kyan Cox</span>.</p>
                 <div>
                     <p className="text-start md:text-4xl text-3xl">Aspiring<span> </span>
                         <ReactTyped
