@@ -61,7 +61,7 @@ const Navbar = () => {
                 </div>
             </nav>
             <Sheet>
-                <nav className={`flex md:hidden items-center justify-between z-50 p-4 border-b shadow-2xl sticky top-0 transition-transform duration-300 bg-background ${isVisible ? 'translate-y-0' : (isMenuOpen ? '' : '-translate-y-full')}`}>
+                <nav className={`flex md:hidden items-center justify-between z-50 p-4 border-b ${isVisible && 'shadow-2xl'} sticky top-0 transition-transform duration-300 bg-background ${isVisible ? 'translate-y-0' : (isMenuOpen ? '' : '-translate-y-full')}`}>
                     <Link href='#home' className=' text-2xl font-semibold hover:text-slate-400 transition duration-300'>Kyan Cox</Link>
                     <SheetTrigger>
                         <Menu size={24} />
@@ -69,18 +69,22 @@ const Navbar = () => {
                 </nav>
                 <SheetContent className="w-1/2 flex flex-col justify-between">
 
-                   <div className='flex items-center justify-end'>
-                     <SheetClose className='border p-1 rounded-md' >
-                         <X size={24} />
-                     </SheetClose>
-                   </div>
+                    <div className='flex items-center justify-end'>
+                        <SheetClose className='border p-1 rounded-md' >
+                            <X size={24} />
+                        </SheetClose>
+                    </div>
 
                     <div className='flex flex-col items-center justify-center space-y-4'>
                         {buttons.map(({ name, route }) => (
-                            <Link key={name} href={route} className='text-xl font-semibold hover:text-slate-400 transition duration-200' onClick={() => setIsMenuOpen(false)}>{name}</Link>
+                            <Link key={name} href={route} className='text-xl font-semibold hover:text-slate-400 transition duration-200' onClick={() => setIsMenuOpen(false)}>
+                                <SheetClose >
+                                    {name}
+                                </SheetClose>
+                            </Link>
                         ))}
                     </div>
-                    
+
                     <div className=' flex items-center justify-end'>
                         <ModeToggle />
                     </div>
