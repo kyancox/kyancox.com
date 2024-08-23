@@ -29,6 +29,7 @@ const Hero = () => {
                             typeSpeed={70}
                             backSpeed={50}
                             loop
+                            showCursor={true}
                         />
                     </p>
                 </div>

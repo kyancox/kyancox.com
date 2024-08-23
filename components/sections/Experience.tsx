@@ -60,7 +60,7 @@ const Experience = () => {
                 <CarouselContent>
                     {experiences.map(({ name, title, image, description, duration }) => (
                         <CarouselItem key={title}>
-                            <Card className='border-foreground'>
+                            <Card className='border-foreground border-2'>
                                 <CardContent className="p-6">
                                      <div className='flex items-center justify-start space-x-2'>
                                          <Image
@@ -84,7 +84,7 @@ const Experience = () => {
                         </CarouselItem>
                     ))}
                 </CarouselContent>
-                <span className='hidden sm:block'>
+                <span className='hidden md:block'>
                     <CarouselPrevious />
                     <CarouselNext />
                 </span>
