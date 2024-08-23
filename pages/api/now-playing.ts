@@ -4,6 +4,11 @@ import { getNowPlaying } from '../../lib/spotify';
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
         const response = await getNowPlaying();
+        
+        if (response.status === 204) {
+            res.status(204).end();
+            return
+        }
 
         if (response.error) {
             return res.status(response.error.status).json({ message: response.error.message });

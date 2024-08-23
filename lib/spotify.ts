@@ -59,6 +59,11 @@ export const getNowPlaying = async () => {
         }
     });
 
+    if (response.status === 204) {
+        console.error('No music is currently playing:', response.status, response.statusText);
+        return { status: 204, message: 'No music is currently playing.' };
+    }
+
     if (!response.ok) {
         console.error('Failed to fetch now playing data:', response.status, response.statusText);
         return { error: { status: response.status, message: response.statusText } };
