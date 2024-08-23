@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/react"
 import type { Metadata } from "next";
 import { Nunito_Sans } from "next/font/google";
 import "./globals.css";
@@ -32,6 +33,7 @@ export default function RootLayout({
           <Navbar />
           {children}
           <Footer />
+          <Analytics/>
         </ThemeProvider>
       </body>
     </html>
