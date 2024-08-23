@@ -76,8 +76,8 @@ const Experience = () => {
                                          <p className='font-bold'>{title}</p>
                                          <p className='text-gray-400 text-sm'>{duration}</p>
                                      </div>
-                                     {description.map(bullet => (
-                                         <p>{bullet}</p>
+                                     {description.map((bullet, index) => (
+                                         <p key={index}>{bullet}</p>
                                      ))}
                                 </CardContent>
                             </Card>
