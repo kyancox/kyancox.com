@@ -56,7 +56,7 @@ const TopTracks = () => {
     }
 
     return (
-        <div className='lg:w-1/2 md:w-2/3 mx-4 my-2 space-y-2'>
+        <div className='lg:w-1/2 md:w-2/3 w-11/12 mx-4 my-2 space-y-2'>
             <div className={`inline-flex flex-row items-center justify-start space-x-2 bg-spotify p-2 rounded-lg`}>
                 <SpotifyLogo />
                 <p className='text-xl font-bold text-white dark:text-white'>Top tracks this month</p>
@@ -65,7 +65,7 @@ const TopTracks = () => {
                 {topTracks.map((track, index) => (
                     <div key={index} className='flex flex-row items-center py-1 w-full hover:opacity-60 transition duration-50'>
 
-                        <div className='flex flex-row items-center xl:w-2/3  '>
+                        <div className='flex flex-row items-center xl:w-2/3 w-full max-w-full '>
                             <p className='mx-4 text-white'>{index + 1}</p>
                             <Image
                                 src={track.albumImageUrl}
@@ -75,8 +75,8 @@ const TopTracks = () => {
                                 className='rounded'
                             />
 
-                            <div className='flex flex-col mx-4'>
-                                <p className='text-white'>{track.title}</p>
+                            <div className='flex flex-col mx-4 flex-1 min-w-0'>
+                                <p className='text-white overflow-hidden text-ellipsis whitespace-nowrap'>{track.title}</p>
                                 <p className='text-gray-400 text-xs'>{track.artist}</p>
                             </div>
 

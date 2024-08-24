@@ -38,25 +38,35 @@ const NowPlaying = () => {
 
     if (error) {
         return null;
+        // return (
+        //     <div className='flex flex-col items-center justify-center space-y-1'>
+        //         <div className={`inline-flex flex-row items-center justify-start space-x-2 bg-spotify p-2 rounded-lg`}>
+        //             <SpotifyLogo />
+        //             <p className='text-xl font-bold dark:text-white text-'>Not playing</p>
+        //         </div>
+        //     </div>
+        // );
     }
 
     if (!nowPlaying) {
-        return <div className='flex flex-col items-center justify-center space-y-1'>
-             <div className={`inline-flex flex-row items-center justify-start space-x-2 bg-spotify p-2 rounded-lg`}>
-                <SpotifyLogo />
-                <p className='text-xl font-bold dark:text-white text-'>Currently playing</p>
+        return (
+            <div className='flex flex-col items-center justify-center space-y-1'>
+                <div className={`inline-flex flex-row items-center justify-start space-x-2 bg-spotify p-2 rounded-lg`}>
+                    <SpotifyLogo />
+                    <p className='text-xl font-bold dark:text-white text-'>Currently playing</p>
+                </div>
+                <LoadingSpinner />
             </div>
-            <LoadingSpinner/>
-        </div>;
+        );
     }
 
     return (
-        <div className='mx-4 my-2 space-y-2 '>
+        <div className='my-2 space-y-2 w-full xl:w-1/2'>
             <div className={`inline-flex flex-row items-center justify-start space-x-2 bg-spotify p-2 rounded-lg`}>
                 <SpotifyLogo />
                 <p className='text-xl font-bold dark:text-white text-white'>Currently playing</p>
             </div>
-            <div className='flex flex-row p-2.5 rounded-lg space-x-3 shadow-lg min-w-36' style={{ backgroundColor: '#121212', }}>
+            <div className='flex flex-row p-2.5 rounded-lg space-x-3 shadow-lg min-w-36 w-full xl:max-w-full' style={{ backgroundColor: '#121212', }}>
                 <Image
                     src={nowPlaying.albumImageUrl}
                     alt={`${nowPlaying.title} album art`}
@@ -64,15 +74,15 @@ const NowPlaying = () => {
                     height={96}
                     className='rounded'
                 />
-               <div>
-                 <div className='flex flex-row items-center justify-start space-x-2'>
-                     <PlayingAnimation />
-                     <p className='font-bold text-lg overflow-clip text-white' style={{ minWidth: '100px', maxWidth: '200px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{nowPlaying.title}</p>
-                 </div>
-                
-                 <p className='text-gray-400 text-sm'>{nowPlaying.artist}</p>
-               </div>
-
+                <div className='flex-1 min-w-0'>
+                    <div className='flex flex-row items-center justify-start space-x-2'>
+                        <PlayingAnimation />
+                        <div className='flex-1 min-w-0'>
+                            <p className='font-bold text-lg text-white overflow-hidden text-ellipsis whitespace-nowrap'>{nowPlaying.title}</p>
+                        </div>
+                    </div>
+                    <p className='text-gray-400 text-sm'>{nowPlaying.artist}</p>
+                </div>
             </div>
         </div>
     );
