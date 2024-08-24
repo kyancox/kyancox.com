@@ -61,7 +61,7 @@ const Experience = () => {
                     {experiences.map(({ name, title, image, description, duration }) => (
                         <CarouselItem key={title}>
                             <Card className='border-foreground border md:border-2'>
-                                <CardContent className="p-6">
+                                <CardContent className="p-5">
                                      <div className='flex items-center justify-start space-x-2'>
                                          <Image
                                              src={image}
