@@ -19,7 +19,7 @@ const ProjectCard = ({ title, desc, bullets, image, link, skills, reverse }: Pro
     return (
 
         <CardContainer className="inter-var w-full">
-            <CardBody className="w-2/3 bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] h-auto rounded-xl p-6 border  ">
+            <CardBody className="w-full mx-4 md:mx-0 md:w-2/3 bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] h-auto rounded-xl p-6 border  ">
                 <CardItem
                     as={'p'}
                     className="text-xl font-bold text-neutral-600 dark:text-white hover:underline cursor-pointer  hover:opacity-60  "
@@ -27,9 +27,9 @@ const ProjectCard = ({ title, desc, bullets, image, link, skills, reverse }: Pro
                 >
                     {title}
                 </CardItem>
-                <div className={`flex ${reverse ? 'flex-row-reverse space-x-reverse' : 'flex-row'}  items-center justify-center space-x-8`}>
+                <div className={`flex ${reverse ? 'xl:flex-row-reverse xl:space-x-reverse' : 'xl:flex-row'} flex-col items-center justify-center xl:space-x-8 xl:space-y-0 space-y-4`}>
                     <CardItem
-                        className="w-1/2 mt-4 cursor-pointer"
+                        className="xl:w-1/2 mt-4 cursor-pointer"
                         onClick={() => window.open(link, '_blank')}
                     >
                         <Image
@@ -40,33 +40,35 @@ const ProjectCard = ({ title, desc, bullets, image, link, skills, reverse }: Pro
                             alt="thumbnail"
                         />
                     </CardItem>
-                    <div className="flex flex-col justify-between min-h-96 w-1/2 mx-4">
-                    <div className="space-y-1">
-                        <CardItem
-                            as="p"
-                            className="text-neutral-500 text-center text-base mt-2 dark:text-neutral-300"
-                        >
-                            {desc}
-                        </CardItem>
-
-                        
+                    <div className="flex flex-col justify-between min-h-96 xl:w-1/2 mx-4 space-y-4 ">
+                        <div className="space-y-4">
                             <CardItem
-                                as={'p'}
-                                className="text-lg text-left font-bold text-neutral-600 dark:text-white"
+                                as="p"
+                                className="text-neutral-500 text-center text-base mt-2 dark:text-neutral-300"
                             >
-                                Description:
+                                {desc}
                             </CardItem>
-                            <CardItem
-                                as={'div'}
-                                className="flex flex-col items-start justify-start"
-                            >
-                                {bullets.map((bullet, index) => (
-                                    <p key={index} className="text-neutral-500 text-left text-sm my-0.5 dark:text-neutral-300">
-                                        - {bullet}
-                                    </p>
-                                ))}
 
-                            </CardItem>
+
+                            <div>
+                                <CardItem
+                                    as={'p'}
+                                    className="text-lg text-left font-bold text-neutral-600 dark:text-white"
+                                >
+                                    Description:
+                                </CardItem>
+                                <CardItem
+                                    as={'div'}
+                                    className="flex flex-col items-start justify-start"
+                                >
+                                    {bullets.map((bullet, index) => (
+                                        <p key={index} className="text-neutral-500 text-left text-sm my-0.5 dark:text-neutral-300">
+                                            - {bullet}
+                                        </p>
+                                    ))}
+                                
+                                </CardItem>
+                            </div>
                         </div>
 
                         <CardItem
@@ -74,8 +76,8 @@ const ProjectCard = ({ title, desc, bullets, image, link, skills, reverse }: Pro
                             className="flex flex-row flex-wrap justify-center"
                         >
                             {skills.map((skill, index) => (
-                                <div 
-                                    key={index} 
+                                <div
+                                    key={index}
                                     className="bg-foreground rounded-full px-2.5 py-0.5 m-1"
                                 >
                                     <p className="text-background text-center font-semibold text-sm ">
