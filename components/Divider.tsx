@@ -2,7 +2,7 @@ import React from 'react'
 
 const Divider = () => {
   return (
-    <div className='w-2/3 border mx-auto'></div>
+    <div className=' mx-4 md:w-2/3 border md:mx-auto border-foreground'></div>
   )
 }
 
