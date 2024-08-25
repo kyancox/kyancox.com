@@ -61,8 +61,6 @@ export default function Home() {
 
       <Hero />
 
-
-      <About />
       
       <section id="skills" className="bg-red-">
         <p className="text-center text-5xl font-bold ">Skills</p>
@@ -96,7 +94,7 @@ export default function Home() {
         <Experience />
       </section>
 
-
+      <About />
 
       <Contact />
 
