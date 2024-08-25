@@ -13,6 +13,7 @@ import Experience from "@/components/sections/Experience";
 import Hero from "@/components/sections/Hero";
 import Contact from "@/components/sections/Contact";
 import About from "@/components/sections/About";
+import Projects from "@/components/sections/Projects";
 
 
 export default function Home() {
@@ -61,7 +62,7 @@ export default function Home() {
 
       <Hero />
 
-      
+
       <section id="skills" className="bg-red-">
         <p className="text-center text-5xl font-bold ">Skills</p>
 
@@ -84,9 +85,7 @@ export default function Home() {
 
       </section>
 
-      <section id="projects" className="h-screen">
-        <p className="text-center text-5xl font-bold mb-6 my-8">Projects</p>
-      </section>
+      <Projects />
 
       <section id='experience' className="flex flex-col items-center justify-center">
         <p className="text-center text-5xl font-bold mb-6">Experience</p>
