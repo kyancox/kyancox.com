@@ -4,6 +4,8 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { CardBody, CardContainer, CardItem } from "./ui/3d-card";
 import { Modal, ModalBody, ModalContent } from "./ui/animated-modal";
+import { YouTubeEmbed } from '@next/third-parties/google'
+import githublogo from '@/public/githublogo.svg'
 
 interface ProjectCardProps {
     title: string,
@@ -109,11 +111,39 @@ const ProjectCard = ({ title, desc, bullets, image, link, skills, reverse }: Pro
             <Modal open={open} setOpen={setOpen}>
                 <ModalBody open={open} setOpen={setOpen}>
                     <ModalContent>
-                        <p
-                            className="text-xl font-bold text-neutral-600 dark:text-white hover:underline cursor-pointer hover:opacity-60 text-center"
-                        >
-                            {title} Demo
-                        </p>
+                        <div className="flex flex-col items-center justify-between space-y-4 flex-1">
+                            <p
+                                className="text-xl font-bold text-neutral-600 dark:text-white hover:underline cursor-pointer hover:opacity-60 text-center"
+                            >
+                                {title} Demo
+                            </p>
+
+                            <div className="">
+                                {/* Desktop size */}
+                                <div className="hidden md:block">
+                                    <YouTubeEmbed videoid="LownPmmUE6c"  width={600} />
+                                </div>
+                                {/* Mobile size */}
+                                <div className="md:hidden block">
+                                    <YouTubeEmbed videoid="LownPmmUE6c"  width={350} />
+                                </div>
+                            </div>
+
+                            <div className="flex flex-col items-center justify-center">
+                                <button className="py-2.5 px-3.5 rounded-full flex flex-row items-center justify-center space-x-2 hover:opacity-60 transition duration-300" style={{ backgroundColor: '#2b3137' }}
+                                    onClick={() => window.open('https://www.github.com/kyancox', '_blank')}
+                                >
+                                    <Image
+                                        src={githublogo}
+                                        alt="Github logo"
+                                        width={24}
+                                        height={24}
+                                    />
+                                    <p className="text-lg font-semibold text-white">{title} Repo</p>
+                                </button>
+                            </div>
+                        </div>
+
                     </ModalContent>
                 </ModalBody>
             </Modal>

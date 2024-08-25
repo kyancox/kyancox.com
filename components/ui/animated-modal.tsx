@@ -40,7 +40,7 @@ export function Modal({
       <div
         ref={modalRef}
         className={cn(
-          "min-h-[50%] max-h-[90%] md:max-w-[40%] bg-white dark:bg-neutral-950 border border-transparent dark:border-neutral-800 md:rounded-2xl relative z-50 flex flex-col flex-1 overflow-hidden",
+          "xl:max-w-[50%] max-w-[80%] bg-white dark:bg-neutral-950 border border-transparent dark:border-neutral-800 rounded-2xl relative z-50 flex flex-col flex-1 overflow-hidden",
           className
         )}
       >
@@ -89,7 +89,8 @@ export const ModalBody = ({
       <div
         ref={modalRef}
         className={cn(
-          "min-h-[50%] max-h-[90%] md:max-w-[40%] bg-white dark:bg-neutral-950 border border-transparent dark:border-neutral-800 md:rounded-2xl relative z-50 flex flex-col flex-1 overflow-hidden",
+          // old height was min-h-[50%] max-h-[90%]
+          "xl:max-w-[50%] max-w-[80%] bg-white dark:bg-neutral-950 border border-transparent dark:border-neutral-800 rounded-2xl relative z-50 flex flex-col flex-1 overflow-hidden",
           className
         )}
       >
