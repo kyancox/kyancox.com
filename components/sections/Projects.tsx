@@ -39,7 +39,7 @@ const Projects = () => {
                 title="Cryptocurrency Investment Allocator"
                 desc="A web app where you can view all of your cryptocurrency assets from Coinbase, Gemini, and Ledger Live in one place. The app utilizes your API keys from your Coinbase and Gemini accounts, as well as a CSV file of your assets from Ledger Live."
                 bullets={["Created a RESTful API using Flask, featuring 14 endpoints to manage customer information within an SQLite database, that seamlessly integrates three external APIs for dynamic data retrieval, and employs OOP principles to ensure scalability and a maintainable code architecture.", "Utilized Pandas to both create an XLSX file for customers that exports their assets from multiple services into one centralized portfolio and parse through Ledger Live’s Operation History CSV."]}
-                link="https://llmcomparison.vercel.app/"
+                link="https://coinmerge.co/"
                 skills={['Python', 'Flask', 'SQLite', 'JavaScript', 'HTML', 'CSS', 'Pandas', 'RESTful API']}
                 image={coinmergedemo}
             />
