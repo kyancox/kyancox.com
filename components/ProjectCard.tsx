@@ -24,6 +24,7 @@ const ProjectCard = ({ title, desc, bullets, image, link, skills, reverse }: Pro
                     as={'p'}
                     className="text-xl font-bold text-neutral-600 dark:text-white hover:underline cursor-pointer  hover:opacity-60  "
                     onClick={() => window.open(link, '_blank')}
+                    translateZ={25}
                 >
                     {title}
                 </CardItem>
@@ -31,6 +32,7 @@ const ProjectCard = ({ title, desc, bullets, image, link, skills, reverse }: Pro
                     <CardItem
                         className="xl:w-1/2 mt-4 cursor-pointer"
                         onClick={() => window.open(link, '_blank')}
+                        translateZ={50}
                     >
                         <Image
                             src={image}
@@ -101,6 +103,7 @@ const ProjectCard = ({ title, desc, bullets, image, link, skills, reverse }: Pro
                         as="button"
                         className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold  hover:opacity-60 transition duration-50"
                         onClick={() => window.open(link, '_blank')}
+                        translateZ={25}
                     >
                         View Project
                     </CardItem>
