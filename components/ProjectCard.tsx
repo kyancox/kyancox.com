@@ -62,7 +62,7 @@ const ProjectCard = ({ title, desc, bullets, image, link, skills, reverse }: Pro
                                     className="flex flex-col items-start justify-start"
                                 >
                                     {bullets.map((bullet, index) => (
-                                        <p key={index} className="text-neutral-500 text-left text-sm my-0.5 dark:text-neutral-300">
+                                        <p key={index} className="text-neutral-500 text-left text-base  md:text-sm my-0.5 dark:text-neutral-300">
                                             - {bullet}
                                         </p>
                                     ))}
