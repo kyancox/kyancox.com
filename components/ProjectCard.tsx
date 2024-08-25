@@ -101,7 +101,7 @@ const ProjectCard = ({ title, desc, bullets, image, link, skills, reverse }: Pro
                     </CardItem>
                     <CardItem
                         as="button"
-                        className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold  hover:opacity-60 transition duration-50"
+                        className={`px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold  hover:opacity-60 transition duration-50 ${title === 'Visual Snow Log' && 'cursor-not-allowed'}`}
                         onClick={() => window.open(link, '_blank')}
                         translateZ={25}
                     >

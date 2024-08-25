@@ -8,6 +8,7 @@ import ProjectCard from "../ProjectCard";
 
 import llmdemo from '@/public/llmdemo.png'
 import visualsnowdemo from '@/public/visualsnowdemo.png'
+import coinmergedemo from '@/public/coinmergedemo.png'
 
 
 const Projects = () => {
@@ -40,7 +41,7 @@ const Projects = () => {
                 bullets={["Created a RESTful API using Flask, featuring 14 endpoints to manage customer information within an SQLite database, that seamlessly integrates three external APIs for dynamic data retrieval, and employs OOP principles to ensure scalability and a maintainable code architecture.", "Utilized Pandas to both create an XLSX file for customers that exports their assets from multiple services into one centralized portfolio and parse through Ledger Live’s Operation History CSV."]}
                 link="https://llmcomparison.vercel.app/"
                 skills={['Python', 'Flask', 'SQLite', 'JavaScript', 'HTML', 'CSS', 'Pandas', 'RESTful API']}
-                image={llmdemo}
+                image={coinmergedemo}
             />
 
         </section>
