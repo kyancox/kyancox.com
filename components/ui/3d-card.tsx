@@ -14,6 +14,10 @@ const MouseEnterContext = createContext<
   [boolean, React.Dispatch<React.SetStateAction<boolean>>] | undefined
 >(undefined);
 
+const isMobileDevice = () => {
+  return window.innerWidth <= 768; // You can adjust the width threshold as needed
+};
+
 export const CardContainer = ({
   children,
   className,
@@ -27,7 +31,7 @@ export const CardContainer = ({
   const [isMouseEntered, setIsMouseEntered] = useState(false);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!containerRef.current) return;
+    if (isMobileDevice() || !containerRef.current) return;
     const { left, top, width, height } =
       containerRef.current.getBoundingClientRect();
     const x = (e.clientX - left - width / 2) / 250; // Adjusted divisor for less horizontal movement
@@ -36,12 +40,13 @@ export const CardContainer = ({
   };
 
   const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (isMobileDevice()) return;
     setIsMouseEntered(true);
     if (!containerRef.current) return;
   };
 
   const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!containerRef.current) return;
+    if (isMobileDevice() || !containerRef.current) return;
     setIsMouseEntered(false);
     containerRef.current.style.transform = `rotateY(0deg) rotateX(0deg)`;
   };
@@ -129,7 +134,7 @@ export const CardItem = ({
 
   const handleAnimations = () => {
     if (!ref.current) return;
-    if (isMouseEntered) {
+    if (isMouseEntered && !isMobileDevice()) {
       ref.current.style.transform = `translateX(${translateX}px) translateY(${translateY}px) translateZ(${translateZ}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`;
     } else {
       ref.current.style.transform = `translateX(0px) translateY(0px) translateZ(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg)`;
