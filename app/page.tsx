@@ -16,6 +16,13 @@ export default function Home() {
 
       <Hero />
 
+      <Divider />
+
+      <Projects />
+
+      <Divider />
+
+      <About />
 
       <Divider />
 
@@ -23,15 +30,7 @@ export default function Home() {
 
       <Divider />
 
-      <Projects />
-
-      <Divider />
-
       <Experience />
-
-      <Divider />
-
-      <About />
 
       <Divider />
 

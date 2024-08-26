@@ -13,16 +13,19 @@ import {
     SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet"
+import { Button } from "@/components/ui/button"
+import { useTheme } from 'next-themes'
 
 const Navbar = () => {
     const [isVisible, setIsVisible] = useState(true)
     const [lastScrollY, setLastScrollY] = useState(0)
     const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const { setTheme, theme } = useTheme()
 
     const handleScroll = () => {
         const homeSection = document.querySelector('#home')
         const homeSectionBottom = homeSection ? homeSection.getBoundingClientRect().bottom : 0
-        
+
         console.log('window.scrollY: ', window.scrollY)
         console.log('lastScrollY: ', lastScrollY)
 
@@ -44,11 +47,12 @@ const Navbar = () => {
 
     const buttons = [
         { name: 'Home', route: '#home' },
+        { name: 'Projects', route: '#projects' },
         { name: 'About', route: '#about' },
         { name: 'Skills', route: '#skills' },
-        { name: 'Projects', route: '#projects' },
         { name: 'Experience', route: '#experience' },
         { name: 'Contact', route: '#contact' },
+        { name: 'Resume', route: '/resume' },
     ]
 
     return (
