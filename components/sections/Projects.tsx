@@ -13,8 +13,8 @@ import coinmergedemo from '@/public/coinmergedemo.png'
 
 const Projects = () => {
     return (
-        <section id="projects" className="my-32">
-            <p className="text-center text-5xl font-bold mb-6 my-8">Projects</p>
+        <section id="projects" className="my-5">
+            <p className="text-center text-4xl font-bold">Projects</p>
 
             <ProjectCard
                 title="Visual Snow Log"
