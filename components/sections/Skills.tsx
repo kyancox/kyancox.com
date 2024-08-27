@@ -42,7 +42,7 @@ const Skills = () => {
 
     return (
         <section id="skills" className="xl:my-10 my-5">
-            <p className="text-center text-4xl font-bold ">Skills</p>
+            <p className="text-center text-4xl font-bold xl:mb-0 mb-1 ">Skills</p>
 
             <div className="flex xl:flex-row flex-col justify-center items-center">
 
