@@ -41,10 +41,10 @@ const Skills = () => {
     }
 
     return (
-        <section id="skills" className="my-32">
-            <p className="text-center text-5xl font-bold ">Skills</p>
+        <section id="skills" className="xl:my-10 my-5">
+            <p className="text-center text-4xl font-bold ">Skills</p>
 
-            <div className="flex xl:flex-row flex-col justify-center items-center ">
+            <div className="flex xl:flex-row flex-col justify-center items-center">
 
                 <SkillCard
                     title="Programming Languages"

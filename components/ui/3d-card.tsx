@@ -22,10 +22,16 @@ export const CardContainer = ({
   children,
   className,
   containerClassName,
+  paddingY,
+  xDivisor,
+  yDivisor,
 }: {
   children?: React.ReactNode;
   className?: string;
   containerClassName?: string;
+  paddingY: number;
+  xDivisor: number;
+  yDivisor: number;
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isMouseEntered, setIsMouseEntered] = useState(false);
@@ -34,8 +40,8 @@ export const CardContainer = ({
     if (isMobileDevice() || !containerRef.current) return;
     const { left, top, width, height } =
       containerRef.current.getBoundingClientRect();
-    const x = (e.clientX - left - width / 2) / 250; // Adjusted divisor for less horizontal movement
-    const y = (e.clientY - top - height / 2) / 25;
+    const x = (e.clientX - left - width / 2) / xDivisor; // Adjusted divisor for less horizontal movement
+    const y = (e.clientY - top - height / 2) / yDivisor;
     containerRef.current.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
   };
 
@@ -54,7 +60,7 @@ export const CardContainer = ({
     <MouseEnterContext.Provider value={[isMouseEntered, setIsMouseEntered]}>
       <div
         className={cn(
-          "py-5 flex items-center justify-center",
+          `py-${paddingY} flex items-center justify-center`,
           containerClassName
         )}
         style={{
