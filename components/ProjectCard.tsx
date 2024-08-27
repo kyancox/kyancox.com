@@ -23,7 +23,7 @@ const ProjectCard = ({ title, desc, bullets, image, link, skills, reverse }: Pro
     return (
         <>
             <CardContainer className="inter-var w-full" paddingY={5} xDivisor={250} yDivisor={25}>
-                <CardBody className="w-full mx-4 md:mx-0 md:w-2/3 bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-sky-800/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] h-auto rounded-xl p-6 border">
+                <CardBody className="w-full mx-4 md:mx-0 md:w-2/3 bg-gray-50 relative group/card md:dark:hover:shadow-2xl md:dark:hover:shadow-sky-800/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] h-auto rounded-xl p-6 border">
                     <CardItem
                         as={'p'}
                         className="text-xl font-bold text-neutral-600 dark:text-white hover:underline cursor-pointer hover:opacity-60"

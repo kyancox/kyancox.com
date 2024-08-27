@@ -99,7 +99,7 @@ const Experience = () => {
                 <CarouselContent>
                     {experiences.map(({ name, title, image, description, duration, skills }) => (
                         <CarouselItem key={title}>
-                            <Card className='border-foreground border md:border-2'>
+                            <Card className='bg-gray-50 relative group/card md:dark:hover:shadow-2xl md:dark:hover:shadow-sky-800/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] rounded-xl  border'>
                                 <CardContent className="p-5 pb-4">
                                     <div className='flex items-center justify-start space-x-2'>
                                         <Image
@@ -109,7 +109,7 @@ const Experience = () => {
                                             height={24}
                                             className='rounded-lg'
                                         />
-                                        <p className='text-2xl font-semibold'>{name}</p>
+                                        <p className='text-xl font-semibold'>{name}</p>
                                     </div>
                                     <div className='flex flex-row items-center justify-between my-2'>
                                         <p className='font-bold'>{title}</p>
