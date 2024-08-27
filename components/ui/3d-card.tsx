@@ -22,14 +22,12 @@ export const CardContainer = ({
   children,
   className,
   containerClassName,
-  paddingY,
   xDivisor,
   yDivisor,
 }: {
   children?: React.ReactNode;
   className?: string;
   containerClassName?: string;
-  paddingY: number;
   xDivisor: number;
   yDivisor: number;
 }) => {
@@ -60,7 +58,7 @@ export const CardContainer = ({
     <MouseEnterContext.Provider value={[isMouseEntered, setIsMouseEntered]}>
       <div
         className={cn(
-          `py-${paddingY} flex items-center justify-center`,
+          `flex items-center justify-center`,
           containerClassName
         )}
         style={{

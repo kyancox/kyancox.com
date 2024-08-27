@@ -9,7 +9,7 @@ interface SkillCardProps {
 
 const SkillCard = ({ title, skills }: SkillCardProps) => {
     return (
-        <CardContainer className="inter-var mx-4 md:w-2/3 lg:w-1/2 xl:w-1/4 xl:min-h-96 xl:min-w-96" paddingY={2} xDivisor={15} yDivisor={15}>
+        <CardContainer className="inter-var mx-4 md:w-2/3 lg:w-1/2 xl:w-1/4 xl:min-h-96 xl:min-w-96 py-2" xDivisor={15} yDivisor={15}>
             <CardBody className="w-full xl:w-96 h-auto bg-gray-50 relative group/card md:dark:hover:shadow-2xl md:dark:hover:shadow-sky-800/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] rounded-xl p-5 border">
                 <CardItem as={'p'} translateZ={10} className='text-xl font-semibold text-neutral-600 dark:text-white text-center mb-1 mx-auto text-foreground'>{title}</CardItem>
                 <div className='flex-wrap flex flex-row items-center justify-center md:mx-2'>
