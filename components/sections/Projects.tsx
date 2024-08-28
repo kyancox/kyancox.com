@@ -23,6 +23,7 @@ const Projects = () => {
                 link="https://llmcomparison.kyancox.com/"
                 skills={['React Native', 'Expo', 'FastAPI', 'Pandas', 'AWS (EC2)', 'Docker', 'PostgreSQL', 'Supabase', 'TypeScript', 'Python', 'SQL']}
                 image={visualsnowdemo}
+                videoid="LownPmmUE6c"
             />
 
             <ProjectCard
@@ -33,15 +34,20 @@ const Projects = () => {
                 image={llmdemo}
                 skills={['React', 'Next.js', 'Tailwind CSS', 'MongoDB', 'Node.js', 'TypeScript', 'Chart.js']}
                 reverse={true}
+                videoid="DsX2x4Zl2HI"
+                repo="https://github.com/kyancox/LLM-Comparison-App"
             />
 
             <ProjectCard
-                title="Cryptocurrency Investment Allocator"
+                title="Cryptocurrency Portfolio Allocator"
                 desc="A web app where you can view all of your cryptocurrency assets from Coinbase, Gemini, and Ledger Live in one place. The app utilizes your API keys from your Coinbase and Gemini accounts, as well as a CSV file of your assets from Ledger Live."
                 bullets={["Created a RESTful API using Flask, featuring 14 endpoints to manage customer information within an SQLite database, that seamlessly integrates three external APIs for dynamic data retrieval, and employs OOP principles to ensure scalability and a maintainable code architecture.", "Utilized Pandas to both create an XLSX file for customers that exports their assets from multiple services into one centralized portfolio and parse through Ledger Live’s Operation History CSV."]}
                 link="https://coinmerge.co/"
                 skills={['Python', 'Flask', 'SQLite', 'JavaScript', 'HTML', 'CSS', 'Pandas', 'RESTful API']}
                 image={coinmergedemo}
+                videoid="R_iHG5gUjSY"
+                repo="https://github.com/kyancox/coinmerge.co"
+                repo2="https://github.com/kyancox/api.coinmerge.co"
             />
 
         </section>

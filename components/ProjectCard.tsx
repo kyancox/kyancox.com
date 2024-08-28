@@ -15,9 +15,12 @@ interface ProjectCardProps {
     link: string,
     skills: string[],
     reverse?: boolean,
+    videoid: string,
+    repo?: string,
+    repo2?: string,
 }
 
-const ProjectCard = ({ title, desc, bullets, image, link, skills, reverse }: ProjectCardProps) => {
+const ProjectCard = ({ title, desc, bullets, image, link, skills, reverse, videoid, repo, repo2 }: ProjectCardProps) => {
     const [open, setOpen] = useState(false);
 
     return (
@@ -121,27 +124,50 @@ const ProjectCard = ({ title, desc, bullets, image, link, skills, reverse }: Pro
                             <div className="">
                                 {/* Desktop size */}
                                 <div className="hidden md:block">
-                                    <YouTubeEmbed videoid="LownPmmUE6c"  width={600} />
+                                    <YouTubeEmbed videoid={videoid} width={600} />
                                 </div>
                                 {/* Mobile size */}
                                 <div className="md:hidden block">
-                                    <YouTubeEmbed videoid="LownPmmUE6c"  width={350} />
+                                    <YouTubeEmbed videoid={videoid} width={350} />
                                 </div>
                             </div>
 
-                            <div className="flex flex-col items-center justify-center">
-                                <button className="py-2.5 px-3.5 rounded-full flex flex-row items-center justify-center space-x-2 hover:opacity-60 transition duration-300" style={{ backgroundColor: '#2b3137' }}
-                                    onClick={() => window.open('https://www.github.com/kyancox', '_blank')}
-                                >
-                                    <Image
-                                        src={githublogo}
-                                        alt="Github logo"
-                                        width={24}
-                                        height={24}
-                                    />
-                                    <p className="text-lg font-semibold text-white">{title} Repo</p>
-                                </button>
-                            </div>
+                            {repo && (
+                                <div className="flex md:flex-row flex-col space-x-0 space-y-4 md:space-y-0 md:space-x-4 items-center justify-center">
+                                    <button className="py-2.5 px-3.5 rounded-full flex flex-row items-center justify-center space-x-2 hover:opacity-60 transition duration-300" style={{ backgroundColor: '#2b3137' }}
+                                        onClick={() => window.open(repo, '_blank')}
+                                    >
+                                        <Image
+                                            src={githublogo}
+                                            alt="Github logo"
+                                            width={24}
+                                            height={24}
+                                        />
+                                        { title === 'Cryptocurrency Portfolio Allocator' ?
+                                            <p className="text-lg font-semibold text-white">Frontend Repo</p>
+                                            : 
+                                            <p className="text-lg font-semibold text-white">GitHub Repo</p>
+                                        }
+                                    </button>
+                                    {repo2 && (
+                                        <button className="py-2.5 px-3.5 rounded-full flex flex-row items-center justify-center space-x-2 hover:opacity-60 transition duration-300" style={{ backgroundColor: '#2b3137' }}
+                                        onClick={() => window.open(repo2, '_blank')}
+                                    >
+                                        <Image
+                                            src={githublogo}
+                                            alt="Github logo"
+                                            width={24}
+                                            height={24}
+                                        />
+                                         { title === 'Cryptocurrency Portfolio Allocator' ?
+                                            <p className="text-lg font-semibold text-white">Backend Repo</p>
+                                            : 
+                                            <p className="text-lg font-semibold text-white">{title} Repo</p>
+                                        }
+                                    </button>
+                                    )}
+                                </div>
+                            )}
                         </div>
 
                     </ModalContent>

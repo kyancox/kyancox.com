@@ -46,7 +46,7 @@ const Navbar = () => {
     }, [lastScrollY])
 
     const buttons = [
-        { name: 'Home', route: '#home' },
+        // { name: 'Home', route: '#home' },
         { name: 'Projects', route: '#projects' },
         { name: 'About', route: '#about' },
         { name: 'Skills', route: '#skills' },
