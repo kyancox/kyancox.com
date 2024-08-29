@@ -14,11 +14,14 @@ const Contact = () => {
 
   return (
     <section id="contact" className="my-12">
-      <p className="text-center text-5xl font-bold mb-6">Contact Me</p>
+      <p className="text-center text-5xl font-bold">Contact Me</p>
       <div className='flex flex-col items-center justify-center'>
+
+        <ContactForm />
+
         <div className="flex flex-row items-center justify-center space-x-2">
-        
-          <button className="py-2.5 px-3.5 rounded-full bg-foreground flex flex-row items-center justify-center space-x-2 hover:translate-y-[-2px] hover:opacity-60 transition-transform duration-300"
+
+          <button className="py-2.5 px-3.5 rounded-md bg-foreground flex flex-row items-center justify-center space-x-2 hover:translate-y-[-2px] hover:opacity-60 transition-transform duration-300"
             onClick={() => window.open('mailto:kyan@cs.wisc.edu', '_blank')}
           >
             <Image
@@ -29,8 +32,8 @@ const Contact = () => {
             />
             <p className="text-lg font-semibold text-background">kyan@cs.wisc.edu</p>
           </button>
-        
-          <button className="py-2.5 px-3.5 rounded-full flex flex-row items-center justify-center space-x-1 hover:translate-y-[-2px] hover:opacity-60 transition-transform duration-300" style={{ backgroundColor: '#0078d4' }}
+
+          <button className="py-2.5 px-3.5 rounded-md flex flex-row items-center justify-center space-x-1 hover:translate-y-[-2px] hover:opacity-60 transition-transform duration-300" style={{ backgroundColor: '#0078d4' }}
             onClick={() => window.open('https://www.linkedin.com/in/kyancox', '_blank')}
           >
             <Image
@@ -41,9 +44,9 @@ const Contact = () => {
             />
             <p className="text-lg font-semibold text-white">@KyanCox</p>
           </button>
-        
+
         </div>
-        <ContactForm/>
+
       </div>
     </section>
   )
