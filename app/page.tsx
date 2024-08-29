@@ -12,7 +12,7 @@ import Experience from "@/components/sections/Experience";
 export default function Home() {
 
   return (
-    <main>
+    <main className="overflow-x-hidden">
 
       <Hero />
 
