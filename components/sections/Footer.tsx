@@ -8,7 +8,7 @@ const Footer = () => {
 
     return (
         <footer className='mt-auto flex flex-col justify-center items-center mb-2'>
-            <Link href={'https://github.com/kyancox/kyancox.com'} target='_blank' className='text-foreground hover:underline font-medium transition duration-100 cursor-pointer'>© Designed & Built by Kyan Cox · {currentYear}</Link>
+            <Link href={'https://github.com/kyancox/kyancox.com'} target='_blank' className='text-foreground hover:text-slate-400 transition duration-300 font-semibold cursor-pointer'>© Designed & Built by Kyan Cox · {currentYear}</Link>
             {/* <div className="bg-foreground pt-4 pb-3 px-6 text-center rounded-lg">
                 <div className='flex items-center justify-center'>
                     <Link href={'https://github.com/kyancox/kyancox.com'} target='_blank' className='text-gray-600 font-semibold hover:underline'>Built with Next.js</Link>
