@@ -20,7 +20,7 @@ const Contact = () => {
       
           <ContactForm />
       
-          <p className='my-1 font-semibold text-2xl'>or reach me at</p>
+          <p className='mt-1 mb-2 font-semibold text-2xl'>or reach me at</p>
           <div className="flex flex-row items-center justify-center space-x-2 my-3 ">
       
             <button className="py-2.5 px-3.5 rounded-md flex flex-row items-center justify-center space-x-1 hover:translate-y-[-2px] hover:opacity-60 transition-transform duration-300" style={{ backgroundColor: '#0078d4' }}

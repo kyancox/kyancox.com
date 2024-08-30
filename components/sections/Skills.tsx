@@ -1,7 +1,29 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import SkillCard from '../SkillCard'
+import { Reveal } from '../Reveal'
+
+// Custom hook to detect if the device is mobile
+export const useIsMobile = () => {
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkIsMobile = () => {
+            setIsMobile(window.matchMedia("(max-width: 768px)").matches);
+        };
+
+        checkIsMobile();
+        window.addEventListener('resize', checkIsMobile);
+
+        return () => {
+            window.removeEventListener('resize', checkIsMobile);
+        };
+    }, []);
+
+    return isMobile;
+};
 
 const Skills = () => {
+    const isMobile = useIsMobile();
 
     const skills = {
         "languages": {
@@ -44,22 +66,46 @@ const Skills = () => {
         <section id="skills" className="xl:my-10 my-5">
             <p className="text-center text-4xl font-bold xl:mb-0 mb-1 ">Skills</p>
 
-            <div className="flex xl:flex-row flex-col justify-center items-center">
+            <div className={`flex ${isMobile ? 'flex-col' : 'xl:flex-row'} justify-center items-center`}>
+                <Reveal
+                    initial={{ opacity: 0, x: -30 }}
+                    whileInView={{ opacity: 1, x: 0, transition: { duration: 0.5, delay: 0.0 } }}
+                >
+                    <SkillCard
+                        title="Programming Languages"
+                        skills={skills.languages}
+                        delay={0.0}
+                        initial={{ opacity: 0, x: -30 }}
+                        whileInView={{ x: 0 }}
+                    />
+                </Reveal>
 
-                <SkillCard
-                    title="Programming Languages"
-                    skills={skills.languages}
-                />
-                <SkillCard
-                    title="Frameworks & Libraries"
-                    skills={skills.frameworks}
-                />
-                <SkillCard
-                    title="Development Tools"
-                    skills={skills.tools}
-                />
+                <Reveal
+                    initial={{ opacity: 0, y: -30 }}
+                    whileInView={{ opacity: 1, y: 0, transition: { duration: 0.5, delay: !isMobile ? 0.2 : 0.0 } }}
+                >
+                    <SkillCard
+                        title="Frameworks & Libraries"
+                        skills={skills.frameworks}
+                        delay={0.2}
+                        initial={{ opacity: 0, y: -30 }}
+                        whileInView={{ y: 0 }}
+                    />
+                </Reveal>
+
+                <Reveal
+                    initial={{ opacity: 0, x: 30 }}
+                    whileInView={{ opacity: 1, x: 0, transition: { duration: 0.5, delay: !isMobile ? 0.4 : 0.0} }}
+                >
+                    <SkillCard
+                        title="Development Tools"
+                        skills={skills.tools}
+                        delay={0.4}
+                        initial={{ opacity: 0, x: 30 }}
+                        whileInView={{ x: 0 }}
+                    />
+                </Reveal>
             </div>
-
         </section>
     )
 }
