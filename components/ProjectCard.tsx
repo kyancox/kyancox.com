@@ -29,8 +29,8 @@ const ProjectCard = ({ title, desc, bullets, image, link, skills, reverse, video
             <CardContainer className="inter-var w-full py-5 overflow-x-hidden" xDivisor={250} yDivisor={25}>
                 <CardBody className="w-full mx-4 md:mx-0 md:w-2/3 bg-gray-50 relative group/card md:dark:hover:shadow-2xl md:dark:hover:shadow-sky-800/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] h-auto rounded-xl p-6 border">
                     <Reveal
-                        initial={{ opacity: 0, y: -50 }}
-                        whileInView={{ opacity: 1, y: 0, transition: { duration: 0.4 } }}
+                        initial={{ opacity: 0, x: !reverse ? -50 : 50 }}
+                        whileInView={{ opacity: 1, x: 0, transition: { duration: 0.4 } }}
                     >
                         <CardItem
                             as={'p'}
@@ -48,8 +48,8 @@ const ProjectCard = ({ title, desc, bullets, image, link, skills, reverse, video
                             translateZ={50}
                         >
                             <Reveal
-                                initial={{ opacity: 0, y: -50 }}
-                                whileInView={{ opacity: 1, y: 0, transition: { duration: 0.4 } }}
+                                initial={{ opacity: 0, x: !reverse ? -50 : 50 }}
+                                whileInView={{ opacity: 1, x: 0, transition: { duration: 0.4 } }}
                             >
                                 <Image
                                     src={image}
@@ -63,8 +63,8 @@ const ProjectCard = ({ title, desc, bullets, image, link, skills, reverse, video
                         <div className="flex flex-col justify-between min-h-96 xl:w-1/2 mx-4 space-y-4">
                             <div className="space-y-4">
                                 <Reveal
-                                    initial={{ opacity: 0, y: -50 }}
-                                    whileInView={{ opacity: 1, y: 0, transition: { duration: 0.4 } }}
+                                    initial={{ opacity: 0, x: !reverse ? -50 : 50 }}
+                                    whileInView={{ opacity: 1, x: 0, transition: { duration: 0.4 } }}
                                 >
                                     <CardItem
                                         as="p"
@@ -75,8 +75,8 @@ const ProjectCard = ({ title, desc, bullets, image, link, skills, reverse, video
                                 </Reveal>
                                 <div>
                                     <Reveal
-                                        initial={{ opacity: 0, y: -50 }}
-                                        whileInView={{ opacity: 1, y: 0, transition: { duration: 0.4 } }}
+                                        initial={{ opacity: 0, y: 30 }}
+                                        whileInView={{ opacity: 1, y: 0, transition: { duration: 0.2 } }}
                                     >
                                         <CardItem
                                             as={'p'}
@@ -127,20 +127,30 @@ const ProjectCard = ({ title, desc, bullets, image, link, skills, reverse, video
                         </div>
                     </div>
                     <div className="flex justify-between items-center mt-8">
-                        <CardItem
-                            onClick={() => setOpen(true)}
-                            className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white hover:opacity-60 transition duration-50 cursor-pointer"
+                        <Reveal
+                            initial={{ opacity: 0, x: -50 }}
+                            whileInView={{ opacity: 1, x: 0, transition: { duration: 0.4 } }}
                         >
-                            More info →
-                        </CardItem>
-                        <CardItem
-                            as="button"
-                            className={`px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold hover:opacity-60 transition duration-50 ${title === 'Visual Snow Log' && 'cursor-not-allowed'}`}
-                            onClick={() => window.open(link, '_blank')}
-                            translateZ={25}
+                            <CardItem
+                                onClick={() => setOpen(true)}
+                                className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white hover:opacity-60 transition duration-50 cursor-pointer"
+                            >
+                                More info →
+                            </CardItem>
+                        </Reveal>
+                        <Reveal
+                            initial={{ opacity: 0, x: 50 }}
+                            whileInView={{ opacity: 1, x: 0, transition: { duration: 0.4 } }}
                         >
-                            View Project
-                        </CardItem>
+                            <CardItem
+                                as="button"
+                                className={`px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold hover:opacity-60 transition duration-50 ${title === 'Visual Snow Log' && 'cursor-not-allowed'}`}
+                                onClick={() => window.open(link, '_blank')}
+                                translateZ={25}
+                            >
+                                View Project
+                            </CardItem>
+                        </Reveal>
                     </div>
                 </CardBody>
 
