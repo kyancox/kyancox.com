@@ -25,7 +25,7 @@ const SkillCard = ({ title, skills, delay, initial, whileInView }: SkillCardProp
                         <Reveal
                             key={key}
                             initial={initial}
-                            whileInView={{ ...(typeof whileInView === 'object' ? whileInView : {}), opacity: 1, transition: { duration: 0.2, delay: (index / 40) + (!isMobile ? delay + 0.2 : 0.2) } }}
+                            whileInView={{ ...(typeof whileInView === 'object' ? whileInView : {}), opacity: 1, transition: { duration: 0.2, delay: (index / 40) + (!isMobile ? delay + 0.2 : 0.1) } }}
                         >
                             <CardItem translateZ={15} className='py-0.5 px-2.5  rounded-full m-1.5 bg-foreground hover:opacity-60 transition duration-50 flex flex-row items-center justify-center space-x-1.5' key={key}>
                                 <Image
