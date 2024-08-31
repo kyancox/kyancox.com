@@ -10,6 +10,7 @@ import {
     type CarouselApi,
 } from "@/components/ui/carousel"
 import { Card, CardContent } from "@/components/ui/card"
+import { Reveal } from './Reveal'
 const Experience = () => {
     const { theme } = useTheme()
     const [api, setApi] = React.useState<CarouselApi>()
@@ -101,33 +102,53 @@ const Experience = () => {
                         <CarouselItem key={title}>
                             <Card className='bg-gray-50 relative group/card md:dark:hover:shadow-2xl md:dark:hover:shadow-sky-800/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] rounded-xl  border'>
                                 <CardContent className="p-5 pb-4">
-                                    <div className='flex items-center justify-start space-x-2'>
-                                        <Image
-                                            src={image}
-                                            alt={title + ' logo'}
-                                            width={24}
-                                            height={24}
-                                            className='rounded-lg'
-                                        />
-                                        <p className='text-xl font-semibold'>{name}</p>
-                                    </div>
-                                    <div className='flex flex-row items-center justify-between my-2'>
-                                        <p className='font-bold'>{title}</p>
-                                        <p className='text-gray-400 text-sm'>{duration}</p>
-                                    </div>
+                                    <Reveal
+                                        initial={{ opacity: 0, y: 30 }}
+                                        whileInView={{ opacity: 1, y: 0, transition: { duration: 0.4, delay: 0.2 } }}
+                                    >
+                                        <div className='flex items-center justify-start space-x-2'>
+                                            <Image
+                                                src={image}
+                                                alt={title + ' logo'}
+                                                width={24}
+                                                height={24}
+                                                className='rounded-lg'
+                                            />
+                                            <p className='text-xl font-semibold'>{name}</p>
+                                        </div>
+                                    </Reveal>
+                                    <Reveal
+                                        initial={{ opacity: 0, y: 30 }}
+                                        whileInView={{ opacity: 1, y: 0, transition: { duration: 0.4, delay: 0.4 } }}
+                                    >
+                                        <div className='flex flex-row items-center justify-between my-2'>
+                                            <p className='font-bold'>{title}</p>
+                                            <p className='text-gray-400 text-sm'>{duration}</p>
+                                        </div>
+                                    </Reveal>
                                     {description.map((bullet, index) => (
-                                        <p key={index}>{bullet}</p>
+                                        <Reveal
+                                            initial={{ opacity: 0, y: 30 }}
+                                            whileInView={{ opacity: 1, y: 0, transition: { duration: 0.4, delay: (index / 5) + 0.6 } }}
+                                        >
+                                            <p key={index}>{bullet}</p>
+                                        </Reveal>
                                     ))}
                                     <div className="flex flex-row flex-wrap justify-center mt-2">
                                         {skills.map((skill, index) => (
-                                            <div
-                                                key={index}
-                                                className="bg-foreground rounded-full px-2.5 py-0.5 m-1"
+                                            <Reveal
+                                                initial={{ opacity: 0, y: 30 }}
+                                                whileInView={{ opacity: 1, y: 0, transition: { duration: 0.4, delay: index / 20  + 0.8} }}
                                             >
-                                                <p className="text-background text-center font-semibold text-sm ">
-                                                    {skill}
-                                                </p>
-                                            </div>
+                                                <div
+                                                    key={index}
+                                                    className="bg-foreground rounded-full px-2.5 py-0.5 m-1"
+                                                >
+                                                    <p className="text-background text-center font-semibold text-sm ">
+                                                        {skill}
+                                                    </p>
+                                                </div>
+                                            </Reveal>
                                         ))}
                                     </div>
                                 </CardContent>
