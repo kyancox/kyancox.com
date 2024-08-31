@@ -137,11 +137,11 @@ const Experience = () => {
                                     <div className="flex flex-row flex-wrap justify-center mt-2">
                                         {skills.map((skill, index) => (
                                             <Reveal
+                                                key={index}
                                                 initial={{ opacity: 0, y: 30 }}
-                                                whileInView={{ opacity: 1, y: 0, transition: { duration: 0.4, delay: index / 20  + 0.8} }}
+                                                whileInView={{ opacity: 1, y: 0, transition: { duration: 0.4, delay: index / 20 + 0.8 } }}
                                             >
                                                 <div
-                                                    key={index}
                                                     className="bg-foreground rounded-full px-2.5 py-0.5 m-1"
                                                 >
                                                     <p className="text-background text-center font-semibold text-sm ">
