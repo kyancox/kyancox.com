@@ -128,10 +128,11 @@ const Experience = () => {
                                     </Reveal>
                                     {description.map((bullet, index) => (
                                         <Reveal
+                                            key={index}
                                             initial={{ opacity: 0, y: 30 }}
                                             whileInView={{ opacity: 1, y: 0, transition: { duration: 0.4, delay: (index / 5) + 0.6 } }}
                                         >
-                                            <p key={index}>{bullet}</p>
+                                            <p>{bullet}</p>
                                         </Reveal>
                                     ))}
                                     <div className="flex flex-row flex-wrap justify-center mt-2">
