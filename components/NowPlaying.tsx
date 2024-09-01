@@ -50,7 +50,7 @@ const NowPlaying = () => {
 
     if (!nowPlaying) {
         return (
-            <div className='flex flex-col items-center justify-center space-y-1'>
+            <div className='my-2 flex xl:flex-col xl:space-y-1 space-y-0 flex-row space-x-2 xl:space-x-0 items-center justify-center'>
                 <div className={`inline-flex flex-row items-center justify-start space-x-2 bg-spotify p-2 rounded-lg`}>
                     <SpotifyLogo />
                     <p className='text-xl font-bold dark:text-white text-'>Currently playing</p>
