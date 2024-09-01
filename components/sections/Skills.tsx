@@ -66,7 +66,7 @@ const Skills = () => {
         <section id="skills" className="xl:my-10 my-5">
             <p className="text-center text-4xl font-bold xl:mb-0 mb-1 ">Skills</p>
 
-            <div className={`flex ${isMobile ? 'flex-col' : 'xl:flex-row'} justify-center items-center`}>
+            <div className={`flex xl:flex-row flex-col justify-center items-center`}>
                 <Reveal
                     initial={{ opacity: 0, x: -30 }}
                     whileInView={{ opacity: 1, x: 0, transition: { duration: 0.5, delay: 0.0 } }}
