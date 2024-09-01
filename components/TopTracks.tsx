@@ -46,7 +46,7 @@ const TopTracks = () => {
     }
 
     if (!topTracks) {
-        return <div className='flex flex-col items-center justify-center space-y-1'>
+        return <div className='my-2 flex xl:flex-col xl:space-y-1 space-y-0 flex-row space-x-2 xl:space-x-0 items-center justify-end'>
             <div className={`inline-flex flex-row items-center justify-start space-x-2 bg-spotify p-2 rounded-lg`}>
                 <SpotifyLogo />
                 <p className='text-xl font-bold text-white dark:text-white'>Top tracks this month</p>
@@ -56,7 +56,7 @@ const TopTracks = () => {
     }
 
     return (
-        <div className='lg:w-1/2 md:w-2/3 w-11/12 mx-4 my-2 space-y-2'>
+        <div className='w-full my-2 space-y-2'>
             <div className={`inline-flex flex-row items-center justify-start space-x-2 bg-spotify p-2 rounded-lg`}>
                 <SpotifyLogo />
                 <p className='text-xl font-bold text-white dark:text-white'>Top tracks this month</p>
@@ -82,8 +82,8 @@ const TopTracks = () => {
 
                         </div>
 
-                        <div className='xl:flex flex-row flex-1 justify-between items-center hidden mr-4'>
-                            <p className='text-sm text-start text-gray-400'>{track.album}</p>
+                        <div className='xl:flex flex-row flex-1 justify-between items-center hidden mr-4 min-w-0 '>
+                            <p className='text-sm text-start text-gray-400 overflow-hidden text-ellipsis whitespace-nowrap'>{track.album}</p>
                             <p className='text-sm text-gray-400'>{track.duration}</p>
                         </div>
                     </div>
