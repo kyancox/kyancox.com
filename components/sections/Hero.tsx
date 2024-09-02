@@ -7,6 +7,7 @@ import githublogo from '@/public/githublogo.svg'
 import linkedin from '@/public/linkedin.svg'
 import resume from '@/public/resume.svg'
 import { Reveal } from '../Reveal';
+import Link from 'next/link';
 
 const Hero = () => {
     const [hasAnimated, setHasAnimated] = useState(false)
@@ -182,42 +183,42 @@ const Hero = () => {
                         </Reveal>
                     )}
 
-                   {!hasAnimated ? ( 
-                    <Reveal
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0, transition: { duration: 0.4, delay: 1.0 } }}
-                        onAnimationComplete={() => setTimeout(() => setHasAnimated(true), 500)}
-                    >
-                        <button className="py-2.5 px-3.5 rounded-full flex flex-row items-center justify-center space-x-2 hover:translate-y-[-2px] hover:opacity-60 transition-transform duration-300" style={{ backgroundColor: '#A8D5BA' }}
-                            onClick={() => window.open('https://www.linkedin.com/in/kyancox', '_blank')}
+                    {!hasAnimated ? (
+                        <Reveal
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0, transition: { duration: 0.4, delay: 1.0 } }}
+                            onAnimationComplete={() => setTimeout(() => setHasAnimated(true), 500)}
                         >
-                            <Image
-                                src={resume}
-                                alt="Resume logo"
-                                width={24}
-                                height={24}
-                            />
-                            <p className="text-lg font-semibold text-black">Resume</p>
-                        </button>
-                    </Reveal>
+                            <Link className="py-2.5 px-3.5 rounded-full flex flex-row items-center justify-center space-x-2 hover:translate-y-[-2px] hover:opacity-60 transition-transform duration-300" style={{ backgroundColor: '#A8D5BA' }}
+                                href={'/resume.pdf'}
+                            >
+                                <Image
+                                    src={resume}
+                                    alt="Resume logo"
+                                    width={24}
+                                    height={24}
+                                />
+                                <p className="text-lg font-semibold text-black">Resume</p>
+                            </Link>
+                        </Reveal>
                     ) : (
                         <Reveal
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0, transition: { duration: 0.4, delay: 0.6 } }}
-                        onAnimationComplete={() => setTimeout(() => setHasAnimated(true), 500)}
-                    >
-                        <button className="py-2.5 px-3.5 rounded-full flex flex-row items-center justify-center space-x-2 hover:translate-y-[-2px] hover:opacity-60 transition-transform duration-300" style={{ backgroundColor: '#A8D5BA' }}
-                            onClick={() => window.open('https://www.linkedin.com/in/kyancox', '_blank')}
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0, transition: { duration: 0.4, delay: 0.6 } }}
+                            onAnimationComplete={() => setTimeout(() => setHasAnimated(true), 500)}
                         >
-                            <Image
-                                src={resume}
-                                alt="Resume logo"
-                                width={24}
-                                height={24}
-                            />
-                            <p className="text-lg font-semibold text-black">Resume</p>
-                        </button>
-                    </Reveal>
+                             <Link className="py-2.5 px-3.5 rounded-full flex flex-row items-center justify-center space-x-2 hover:translate-y-[-2px] hover:opacity-60 transition-transform duration-300" style={{ backgroundColor: '#A8D5BA' }}
+                                href={'/resume.pdf'}
+                            >
+                                <Image
+                                    src={resume}
+                                    alt="Resume logo"
+                                    width={24}
+                                    height={24}
+                                />
+                                <p className="text-lg font-semibold text-black">Resume</p>
+                            </Link>
+                        </Reveal>
                     )}
 
                 </div>

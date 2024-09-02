@@ -53,7 +53,7 @@ const Navbar = () => {
         { name: 'Skills', route: '#skills' },
         { name: 'Experience', route: '#experience' },
         { name: 'Contact', route: '#contact' },
-        { name: 'Resume', route: '/resume' },
+        { name: 'Resume', route: '/resume.pdf' },
     ]
 
     return (
