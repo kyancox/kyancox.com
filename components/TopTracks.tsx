@@ -10,6 +10,7 @@ import { Reveal } from './Reveal';
 type topTracksResponse = {
     albumImageUrl: string,
     artist: string,
+    artistUrl: string,
     isPlaying: string,
     songUrl: string,
     title: string,
@@ -17,6 +18,7 @@ type topTracksResponse = {
     songUri: string,
     duration: string,
     album: string
+    albumUrl: string,
 }
 
 const TopTracks = () => {
@@ -91,14 +93,14 @@ const TopTracks = () => {
                                     />
 
                                     <div className='flex flex-col mx-4 flex-1 min-w-0'>
-                                        <p className='text-white overflow-hidden text-ellipsis whitespace-nowrap'>{track.title}</p>
-                                        <p className='text-gray-400 text-xs'>{track.artist}</p>
+                                        <p className='text-white overflow-hidden text-ellipsis whitespace-nowrap hover:underline cursor-pointer' onClick={() => window.open(track.songUrl, '_blank')}>{track.title}</p>
+                                        <p className='text-gray-400 text-xs hover:underline cursor-pointer' onClick={() => window.open(track.artistUrl, '_blank')}>{track.artist}</p>
                                     </div>
 
                                 </div>
 
                                 <div className='xl:flex flex-row flex-1 justify-between items-center hidden mr-4 min-w-0 '>
-                                    <p className='text-sm text-start text-gray-400 overflow-hidden text-ellipsis whitespace-nowrap'>{track.album}</p>
+                                    <p className='text-sm text-start text-gray-400 overflow-hidden text-ellipsis whitespace-nowrap hover:underline cursor-pointer' onClick={() => window.open(track.albumUrl, '_blank')}>{track.album}</p>
                                     <p className='text-sm text-gray-400'>{track.duration}</p>
                                 </div>
                             </div>

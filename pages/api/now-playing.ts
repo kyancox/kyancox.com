@@ -15,7 +15,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         }
 
         const albumImageUrl = response.item.album.images[0].url;
+        const albumUrl = response.item.album.external_urls.spotify;
         const artist = response.item.artists.map((_artist: any) => _artist.name).join(", ");
+        const artistUrl = response.item.artists[0].external_urls.spotify;
         const isPlaying = response.is_playing;
         const songUrl = response.item.external_urls.spotify;
         const title = response.item.name;
@@ -24,7 +26,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
         const data = {
             albumImageUrl,
+            albumUrl,
             artist,
+            artistUrl,
             isPlaying,
             songUrl,
             title,

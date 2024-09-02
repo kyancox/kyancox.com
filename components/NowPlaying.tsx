@@ -8,7 +8,9 @@ import { Reveal } from './Reveal';
 
 type NowPlayingResponse = {
     albumImageUrl: string,
+    albumUrl: string,
     artist: string,
+    artistUrl: string,
     isPlaying: string,
     songUrl: string,
     title: string,
@@ -82,7 +84,8 @@ const NowPlaying = () => {
                         alt={`${nowPlaying.title} album art`}
                         width={96}
                         height={96}
-                        className='rounded'
+                        className='rounded hover:opacity-60 transition duration-300 cursor-pointer'
+                        onClick={() => window.open(nowPlaying.albumUrl, '_blank')}
                     />
                     <div className='flex-1 min-w-0'>
                         <Reveal
@@ -92,7 +95,7 @@ const NowPlaying = () => {
                             <div className='flex flex-row items-center justify-start space-x-2'>
                                 <PlayingAnimation />
                                 <div className='flex-1 min-w-0'>
-                                    <p className='font-bold text-lg text-white overflow-hidden text-ellipsis whitespace-nowrap w-56 sm:w-full'>{nowPlaying.title}</p>
+                                    <p className='font-bold text-lg text-white overflow-hidden text-ellipsis whitespace-nowrap w-56 sm:w-full hover:underline cursor-pointer' onClick={() => window.open(nowPlaying.songUrl, '_blank')}>{nowPlaying.title}</p>
                                 </div>
                             </div>
                         </Reveal>
@@ -100,7 +103,7 @@ const NowPlaying = () => {
                          initial={{ opacity: 0, x: 30 }}
                          whileInView={{ opacity: 1, x: 0, transition: { duration: 0.4, delay: 0.6 } }}
                         >
-                            <p className='text-gray-400 text-sm'>{nowPlaying.artist}</p>
+                            <p className='text-gray-400 text-sm hover:underline cursor-pointer' onClick={() => window.open(nowPlaying.artistUrl, '_blank')}>{nowPlaying.artist}</p>
                         </Reveal>
                     </div>
                 </div>

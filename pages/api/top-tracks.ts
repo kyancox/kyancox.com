@@ -11,7 +11,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const items = response.items;
 
-
     const msToMinutesAndSeconds = (ms: number) => {
       const minutes = Math.floor(ms / 60000);
       const seconds = ((ms % 60000) / 1000).toFixed(0);
@@ -22,12 +21,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const tracks = items.map((item: any) => ({
       albumImageUrl: item.album.images[0].url,
       artist: item.artists.map((_artist: any) => _artist.name).join(", "),
+      artistUrl: item.artists[0].external_urls.spotify,
       songUrl: item.external_urls.spotify,
       title: item.name,
       previewUrl: item.preview_url,
       songUri: item.uri,
       duration: msToMinutesAndSeconds(item.duration_ms),
-      album: item.album.name
+      album: item.album.name,
+      albumUrl: item.album.external_urls.spotify
     }));
 
     return res.status(200).json({ tracks });
