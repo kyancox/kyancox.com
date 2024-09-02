@@ -4,6 +4,7 @@ import Image from 'next/image';
 import SpotifyLogo from '@/spotify/SpotifyLogo'
 import PlayingAnimation from '@/spotify/PlayingAnimation';
 import { LoadingSpinner } from './LoadingSpinner';
+import { Reveal } from './Reveal';
 
 type NowPlayingResponse = {
     albumImageUrl: string,
@@ -62,28 +63,48 @@ const NowPlaying = () => {
 
     return (
         <div className='my-2 space-y-2 w-full xl:w-1/2'>
-            <div className={`inline-flex flex-row items-center justify-start space-x-2 bg-spotify p-2 rounded-lg`}>
-                <SpotifyLogo />
-                <p className='text-xl font-bold dark:text-white text-white'>Currently playing</p>
-            </div>
-            <div className='flex flex-row p-2.5 rounded-lg space-x-3 shadow-lg min-w-36 w-full xl:max-w-full' style={{ backgroundColor: '#121212', }}>
-                <Image
-                    src={nowPlaying.albumImageUrl}
-                    alt={`${nowPlaying.title} album art`}
-                    width={96}
-                    height={96}
-                    className='rounded'
-                />
-                <div className='flex-1 min-w-0'>
-                    <div className='flex flex-row items-center justify-start space-x-2'>
-                        <PlayingAnimation />
-                        <div className='flex-1 min-w-0'>
-                            <p className='font-bold text-lg text-white overflow-hidden text-ellipsis whitespace-nowrap w-56 sm:w-full'>{nowPlaying.title}</p>
-                        </div>
-                    </div>
-                    <p className='text-gray-400 text-sm'>{nowPlaying.artist}</p>
+            <Reveal
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0, transition: { duration: 0.4, delay: 0.3 } }}
+            >
+                <div className={`inline-flex flex-row items-center justify-start space-x-2 bg-spotify p-2 rounded-lg`}>
+                    <SpotifyLogo />
+                    <p className='text-xl font-bold dark:text-white text-white'>Currently playing</p>
                 </div>
-            </div>
+            </Reveal>
+            <Reveal
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0, transition: { duration: 0.4, delay: 0.4 } }}
+            >
+                <div className='flex flex-row p-2.5 rounded-lg space-x-3 shadow-lg min-w-36 w-full xl:max-w-full' style={{ backgroundColor: '#121212', }}>
+                    <Image
+                        src={nowPlaying.albumImageUrl}
+                        alt={`${nowPlaying.title} album art`}
+                        width={96}
+                        height={96}
+                        className='rounded'
+                    />
+                    <div className='flex-1 min-w-0'>
+                        <Reveal
+                         initial={{ opacity: 0, x: 30 }}
+                         whileInView={{ opacity: 1, x: 0, transition: { duration: 0.4, delay: 0.5 } }}
+                        >
+                            <div className='flex flex-row items-center justify-start space-x-2'>
+                                <PlayingAnimation />
+                                <div className='flex-1 min-w-0'>
+                                    <p className='font-bold text-lg text-white overflow-hidden text-ellipsis whitespace-nowrap w-56 sm:w-full'>{nowPlaying.title}</p>
+                                </div>
+                            </div>
+                        </Reveal>
+                        <Reveal
+                         initial={{ opacity: 0, x: 30 }}
+                         whileInView={{ opacity: 1, x: 0, transition: { duration: 0.4, delay: 0.6 } }}
+                        >
+                            <p className='text-gray-400 text-sm'>{nowPlaying.artist}</p>
+                        </Reveal>
+                    </div>
+                </div>
+            </Reveal>
         </div>
     );
 };
