@@ -15,7 +15,7 @@ const Contact = () => {
 
 
   return (
-    <section id="contact" className="my-12">
+    <section id="contact" className="py-12">
       <p className="text-center text-4xl font-bold">Contact Me</p>
       <div className='flex flex-col items-center justify-center'>
 

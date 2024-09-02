@@ -2,11 +2,10 @@ import React from 'react'
 import NowPlaying from '../NowPlaying'
 import TopTracks from '../TopTracks'
 import { Reveal } from '../Reveal'
-import { CLIENT_STATIC_FILES_RUNTIME_AMP } from 'next/dist/shared/lib/constants'
 
 const About = () => {
     return (
-        <section id='about' className="my-12">
+        <section id='about' className="py-12">
             <p className="text-center text-4xl font-bold">About</p>
             <div className='flex flex-col xl:items-center items-start justify-center lg:w-1/2 md:w-2/3 w-11/12 mx-auto mt-5'>
                 <Reveal
