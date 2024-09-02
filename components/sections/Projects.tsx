@@ -14,7 +14,7 @@ import coinmergedemo from '@/public/coinmergedemo.png'
 
 const Projects = () => {
     return (
-        <section id="projects" className="my-5 overflow-x-hidden">
+        <section id="projects" className="my-12 overflow-x-hidden">
             <p className="text-center text-4xl font-bold">Projects</p>
 
             <Reveal
