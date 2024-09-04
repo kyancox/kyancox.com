@@ -95,7 +95,7 @@ const NowPlaying = () => {
                             <div className='flex flex-row items-center justify-start space-x-2'>
                                 <PlayingAnimation />
                                 <div className='flex-1 min-w-0'>
-                                    <p className='font-bold text-lg text-white overflow-hidden text-ellipsis whitespace-nowrap w-56 sm:w-full hover:underline cursor-pointer' onClick={() => window.open(nowPlaying.songUrl, '_blank')}>{nowPlaying.title}</p>
+                                    <p className='font-bold text-lg text-white overflow-hidden text-ellipsis whitespace-nowrap w-52 sm:w-full hover:underline cursor-pointer' onClick={() => window.open(nowPlaying.songUrl, '_blank')}>{nowPlaying.title}</p>
                                 </div>
                             </div>
                         </Reveal>

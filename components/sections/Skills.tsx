@@ -33,7 +33,8 @@ const Skills = () => {
             "HTML": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
             "CSS": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
             "TypeScript": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
-            "SQL": "https://www.svgrepo.com/show/331760/sql-database-generic.svg"
+            "SQL": "https://www.svgrepo.com/show/331760/sql-database-generic.svg",
+            "R": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg",
         },
         "frameworks": {
             "React": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
