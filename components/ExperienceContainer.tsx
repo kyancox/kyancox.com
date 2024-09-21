@@ -57,6 +57,29 @@ const Experience = () => {
 
     const experiences = [
         {
+            'name': 'UW-Madison College of Engineering',
+            'image': 'https://media.licdn.com/dms/image/v2/C4D0BAQGWVW9DjPilww/company-logo_200_200/company-logo_200_200/0/1655325704096/uwmadengr_logo?e=2147483647&v=beta&t=lCYTjUQ-FRheNkq9RYeuwmYFPMojKmHwZnJBo6q6UFQ',
+            'title': 'AI/ML Undergraduate Researcher',
+            'description': [
+                '- Collaborated with a team of 10 peers to develop machine learning models, including gradient-boosted trees, identifying key factors impacting donation campaigns for The River Food Pantry, the largest food pantry in Wisconsin.',
+                '- Applied predictive analytics and SHAP analysis to evaluate model accuracy and interpretability, offering detailed insights into feature importance, enhancing donor engagement strategies, and improving resource allocation for the non-profit organization.',
+                '- Occasionally volunteering at The River Food Pantry, helping with manual labor while also meeting with directors to discuss application, allocation, and usage of donation data.'
+            ],
+            'duration': 'Sep 2024 - Present',
+            'skills': ['Python', 'Machine Learning', 'Scikit-Learn'],
+        },
+        {
+            'name': 'Visual Snow Initiative',
+            'image': 'https://yt3.googleusercontent.com/ytc/AIdro_mQ0e7XerVsE-zF4HJY2mqCCa4h9FaVwmQU9JBz48zhodg=s900-c-k-c0x00ffffff-no-rj',
+            'title': 'Lead Developer - Visual Snow Log',
+            'description': [
+                '- Developed a mobile app designed for those with Visual Snow Syndrome (VSS), a rare condition that affects ~3% of the world including myself, that allows users to log and track their VSS symptoms over time.',
+                '- Working in collaboration with a team of directors and engineers at the Visual Snow Initiative, aiming to publish Visual Snow Syndrome on the App Store and the Google Play store.'
+            ],
+            'duration': 'May 2024 - Present',
+            'skills': ['React Native', 'Expo', 'FastAPI', 'AWS', 'Docker', 'Supabase', 'PostgreSQL'],
+        },
+        {
             'name': 'Outlier.ai',
             'image': 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAABHVBMVEVHcExYxdpbyN45hpa0nsjBob4vd5BuscV/t8dWqbsoe46nrcxbyN1byN5byd4ycpZbyN1cyd00hJMucZLBsrWFmqJbyd1ZxNowcpI0fJYqZ5Ngj6CvrLqFp7rOsrTJlbKlqLFbyN14v9BPmqQyfJE7hJTNe6zUiaurk8DYt6/hta5byN1RlKBEk7dLrsJTvNTQcqpWv9S8nMjltq7ana5byN0sbqA6ipUsaZZBhZU/jZY5epRzlcqQs8w0hpM5dqZHjZZXwdYtgpOfiLuviLSLock/ka81c6Juh7p7kscycZe7fbHLea1/ocuGqsuVlMPQkK7ku6/Xpa9Dj5ecoMuNi8BhgbBMq8WlmcaMl8W/nb9rl5yzrKfKs6xOfbKStIKHAAAANXRSTlMAVeRs/RZFDwUm/fnR9RjScrLWmjT8uKCA8Oz7kZNBbfW/R8y6/J4uyJnOgk2y67fgzLa5vF7EYFYAAAG/SURBVDiNzZJrV4JAEIYXBVfwknlJ63g5lWn3u4iiYgaGKApUlkft//+MZhch89THzun9tvO8OzM7swj9H4VxHITx6sARhdcwn9gJ1GqxaJbBmCvmb1mWjUTyaY/HE0BXuiocsyzlkUj7wOX8to8f3vqK/s6y7y8vbSJ+k/cVkD4BrmnjcbtdIPV3fA7Xn0CKPptppmmOwQIGxoWB/e3sxdauKEqiqOiDltkyTU3TEMJuf9EEeSGf2pPAIH60QIPZZDLxEgRW/eIcdSg68NfXx8djhLKEx868F+OURBzTwQCwqpYQitIEcX9mQZpiCtfV4XDIIRSjHXwNNbQlSYY4hevD0agCAdrC/jeDYRhTlfDrKvopgyHLRka1LGtUIgE6psuQb8jJoE7GcSyrwpFAgk64jP0EstxodBeO49xz7qaIoSekeJeXATca86Vtn3rLhlU9CIJQzoVCwVTyCHC3u7Dtu6JXlI+BodfrdZLJXRc3M0v7pPrVNwMlgHc69Xq92QQ+X56WuPXvyNTeBI8/Pzfni5P02nekjpu+z7uZfJFDGwrHmcO6W+CwkMab2N0iHwSd8zj8I6ZpQL/CP9UnYHZir4Z66IUAAAAASUVORK5CYII=',
             'title': 'AI Training (Contract)',
@@ -64,8 +87,8 @@ const Experience = () => {
                 '- Evaluated AI-generated code using RLHF techniques to enhance LLM accuracy.',
                 '- Developed and implemented test cases for Python and JavaScript, ensuring high-quality AI performance.'
             ],
-            'duration': 'May 2024 - Present',
-            'skills': ['Python', 'Java', 'TypeScript', 'JavaScript'],
+            'duration': 'May 2024 - August 2024',
+            'skills': ['RLHF', 'Python', 'Java', 'TypeScript', 'JavaScript', 'C'],
         },
         {
             'name': 'Rye Chamber of Commerce',

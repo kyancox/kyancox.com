@@ -35,6 +35,7 @@ const Skills = () => {
             "TypeScript": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
             "SQL": "https://www.svgrepo.com/show/331760/sql-database-generic.svg",
             "R": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg",
+            "C": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg",
         },
         "frameworks": {
             "React": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
