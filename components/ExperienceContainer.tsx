@@ -87,7 +87,7 @@ const Experience = () => {
                 '- Evaluated AI-generated code using RLHF techniques to enhance LLM accuracy.',
                 '- Developed and implemented test cases for Python and JavaScript, ensuring high-quality AI performance.'
             ],
-            'duration': 'May 2024 - August 2024',
+            'duration': 'May - August 2024',
             'skills': ['RLHF', 'Python', 'Java', 'TypeScript', 'JavaScript', 'C'],
         },
         {
@@ -119,7 +119,7 @@ const Experience = () => {
 
     return (
         <div>
-            <Carousel setApi={setApi} className="mx-4 md:w-2/3 lg:w-1/2 xl:w-1/4 xl:min-w-96 md:mx-auto ">
+            <Carousel setApi={setApi} className="w-1/2 md:w-2/3 lg:w-1/2 xl:w-1/4 xl:min-w-96 mx-auto ">
                 <CarouselContent>
                     {experiences.map(({ name, title, image, description, duration, skills }) => (
                         <CarouselItem key={title}>
@@ -146,7 +146,7 @@ const Experience = () => {
                                     >
                                         <div className='flex flex-row items-center justify-between my-2'>
                                             <p className='font-bold'>{title}</p>
-                                            <p className='text-gray-400 text-sm'>{duration}</p>
+                                            <p className='text-gray-400 text-sm text-right'>{duration}</p>
                                         </div>
                                     </Reveal>
                                     {description.map((bullet, index) => (
