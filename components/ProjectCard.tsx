@@ -144,7 +144,7 @@ const ProjectCard = ({ title, desc, bullets, image, link, skills, reverse, video
                         >
                             <CardItem
                                 as="button"
-                                className={`px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold hover:opacity-60 transition duration-50 ${title === 'Visual Snow Log' && 'cursor-not-allowed'}`}
+                                className={`px-4 py-2 rounded-xl bg-foreground dark:text-black text-white text-xs font-bold hover:opacity-60 transition duration-50 ${title === 'Visual Snow Log' && 'cursor-not-allowed'}`}
                                 onClick={() => window.open(link, '_blank')}
                                 translateZ={25}
                             >
@@ -188,7 +188,7 @@ const ProjectCard = ({ title, desc, bullets, image, link, skills, reverse, video
                                             width={24}
                                             height={24}
                                         />
-                                        {title === 'Cryptocurrency Portfolio Allocator' ?
+                                        {repo2 ?
                                             <p className="text-lg font-semibold text-white">Frontend Repo</p>
                                             :
                                             <p className="text-lg font-semibold text-white">GitHub Repo</p>
@@ -204,11 +204,7 @@ const ProjectCard = ({ title, desc, bullets, image, link, skills, reverse, video
                                                 width={24}
                                                 height={24}
                                             />
-                                            {title === 'Cryptocurrency Portfolio Allocator' ?
-                                                <p className="text-lg font-semibold text-white">Backend Repo</p>
-                                                :
-                                                <p className="text-lg font-semibold text-white">{title} Repo</p>
-                                            }
+                                            <p className="text-lg font-semibold text-white">Backend Repo</p>
                                         </button>
                                     )}
                                 </div>
