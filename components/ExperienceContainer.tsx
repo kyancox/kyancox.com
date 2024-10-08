@@ -92,7 +92,7 @@ const Experience = () => {
         },
         {
             'name': 'Rye Chamber of Commerce',
-            'image': 'https://scontent.ftol2-1.fna.fbcdn.net/v/t39.30808-6/327198851_714755046966672_285548003197360395_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=W-eLSXr706EQ7kNvgGKyGBy&_nc_ht=scontent.ftol2-1.fna&oh=00_AYDSlXJQrmN6KymuV_AL1zUYEbmopyaIRSnKY1MwoW-UXw&oe=66CC1F22',
+            'image': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo3zj0ZVwirp7-Fo-7cgSvHJFSIknQvxYmQA&s',
             'title': 'Intern - Software',
             'description': [
                 '- Simplified a multi-day process of extracting and cleaning data from spreadsheets through Python and the Pandas library, aiding in the identification of over 200 potential customers, ultimately maximizing funds for events.',
