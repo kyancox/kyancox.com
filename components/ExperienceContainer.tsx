@@ -69,17 +69,6 @@ const Experience = () => {
             'skills': ['Python', 'Machine Learning', 'Scikit-Learn'],
         },
         {
-            'name': 'Visual Snow Initiative',
-            'image': 'https://yt3.googleusercontent.com/ytc/AIdro_mQ0e7XerVsE-zF4HJY2mqCCa4h9FaVwmQU9JBz48zhodg=s900-c-k-c0x00ffffff-no-rj',
-            'title': 'Lead Developer - Visual Snow Log',
-            'description': [
-                '- Developed a mobile app designed for those with Visual Snow Syndrome (VSS), a rare condition that affects ~3% of the world including myself, that allows users to log and track their VSS symptoms over time.',
-                '- Working in collaboration with a team of directors and engineers at the Visual Snow Initiative, aiming to publish Visual Snow Syndrome on the App Store and the Google Play store.'
-            ],
-            'duration': 'May 2024 - Present',
-            'skills': ['React Native', 'Expo', 'FastAPI', 'AWS', 'Docker', 'Supabase', 'PostgreSQL'],
-        },
-        {
             'name': 'Outlier.ai',
             'image': 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAABHVBMVEVHcExYxdpbyN45hpa0nsjBob4vd5BuscV/t8dWqbsoe46nrcxbyN1byN5byd4ycpZbyN1cyd00hJMucZLBsrWFmqJbyd1ZxNowcpI0fJYqZ5Ngj6CvrLqFp7rOsrTJlbKlqLFbyN14v9BPmqQyfJE7hJTNe6zUiaurk8DYt6/hta5byN1RlKBEk7dLrsJTvNTQcqpWv9S8nMjltq7ana5byN0sbqA6ipUsaZZBhZU/jZY5epRzlcqQs8w0hpM5dqZHjZZXwdYtgpOfiLuviLSLock/ka81c6Juh7p7kscycZe7fbHLea1/ocuGqsuVlMPQkK7ku6/Xpa9Dj5ecoMuNi8BhgbBMq8WlmcaMl8W/nb9rl5yzrKfKs6xOfbKStIKHAAAANXRSTlMAVeRs/RZFDwUm/fnR9RjScrLWmjT8uKCA8Oz7kZNBbfW/R8y6/J4uyJnOgk2y67fgzLa5vF7EYFYAAAG/SURBVDiNzZJrV4JAEIYXBVfwknlJ63g5lWn3u4iiYgaGKApUlkft//+MZhch89THzun9tvO8OzM7swj9H4VxHITx6sARhdcwn9gJ1GqxaJbBmCvmb1mWjUTyaY/HE0BXuiocsyzlkUj7wOX8to8f3vqK/s6y7y8vbSJ+k/cVkD4BrmnjcbtdIPV3fA7Xn0CKPptppmmOwQIGxoWB/e3sxdauKEqiqOiDltkyTU3TEMJuf9EEeSGf2pPAIH60QIPZZDLxEgRW/eIcdSg68NfXx8djhLKEx868F+OURBzTwQCwqpYQitIEcX9mQZpiCtfV4XDIIRSjHXwNNbQlSYY4hevD0agCAdrC/jeDYRhTlfDrKvopgyHLRka1LGtUIgE6psuQb8jJoE7GcSyrwpFAgk64jP0EstxodBeO49xz7qaIoSekeJeXATca86Vtn3rLhlU9CIJQzoVCwVTyCHC3u7Dtu6JXlI+BodfrdZLJXRc3M0v7pPrVNwMlgHc69Xq92QQ+X56WuPXvyNTeBI8/Pzfni5P02nekjpu+z7uZfJFDGwrHmcO6W+CwkMab2N0iHwSd8zj8I6ZpQL/CP9UnYHZir4Z66IUAAAAASUVORK5CYII=',
             'title': 'AI Training (Contract)',
