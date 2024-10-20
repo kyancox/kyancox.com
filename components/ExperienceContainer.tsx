@@ -87,7 +87,7 @@ const Experience = () => {
                 '- Simplified a multi-day process of extracting and cleaning data from spreadsheets through Python and the Pandas library, aiding in the identification of over 200 potential customers, ultimately maximizing funds for events.',
                 '- Developed a mail merge process in Python to create outreach envelopes for prospective customers.'
             ],
-            'duration': 'May 2023 - June 2023',
+            'duration': 'May - June 2023',
             'skills': ['Python', 'Pandas', 'Git', 'Excel'],
         },
     ]
@@ -108,7 +108,7 @@ const Experience = () => {
 
     return (
         <div>
-            <Carousel setApi={setApi} className="w-1/2 md:w-2/3 lg:w-1/2 xl:w-1/4 xl:min-w-96 mx-auto ">
+            <Carousel setApi={setApi} className="w-2/3 lg:w-1/2 xl:w-1/4 xl:min-w-96 mx-auto ">
                 <CarouselContent>
                     {experiences.map(({ name, title, image, description, duration, skills }) => (
                         <CarouselItem key={title}>
