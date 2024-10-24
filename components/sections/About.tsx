@@ -13,7 +13,7 @@ const About = () => {
                     whileInView={{ opacity: 1, x: 0, transition: { duration: 0.4, delay: 0.2 } }}
                 >
                     <div className="flex xl:flex-row flex-col lg:items-start items-start justify-around  ">
-                        <p className="text-lg text-center xl:w-1/2 mx-4 xl:mb-0 mb-2">I&apos;m currently a sophomore at the University of Wisconsin - Madison, pursuing a double major in Computer Science and Statistics, with a minor in Chinese Professional Communication. I&apos;m an aspiring developer fueled by my passions, which you can explore through my projects.</p>
+                        <p className="text-lg text-center xl:w-1/2 mx-4 xl:mb-0 mb-2">I&apos;m currently a junior at the University of Wisconsin - Madison, pursuing a double major in Computer Science and Statistics, with a minor in Chinese Professional Communication. I&apos;m an aspiring developer fueled by my passions, which you can explore through my projects.</p>
                         <NowPlaying />
                     </div>
                 </Reveal>
