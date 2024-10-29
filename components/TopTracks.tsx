@@ -99,7 +99,7 @@ const TopTracks = () => {
 
                                 </div>
 
-                                <div className='xl:flex flex-row flex-1 justify-between items-center hidden mr-4 min-w-0 '>
+                                <div className='xl:flex flex-row flex-1 justify-between space-x-4 items-center hidden mr-4 min-w-0 '>
                                     <p className='text-sm text-start text-gray-400 overflow-hidden text-ellipsis whitespace-nowrap hover:underline cursor-pointer' onClick={() => window.open(track.albumUrl, '_blank')}>{track.album}</p>
                                     <p className='text-sm text-gray-400'>{track.duration}</p>
                                 </div>
