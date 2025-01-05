@@ -56,6 +56,14 @@ const Experience = () => {
 
 
     const experiences = [
+        // {
+        //     'name': 'Polaris',
+        //     'image': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTafoJOPymx98pp0KxdDjmLrUlyiBruiVMlnQ&s',
+        //     'title': 'Incoming Software Engineer Intern',
+        //     'description': [],
+        //     'duration': 'May 2025 - August 2025',
+        //     'skills': [],
+        // },
         {
             'name': 'UW-Madison College of Engineering',
             'image': 'https://media.licdn.com/dms/image/v2/C4D0BAQGWVW9DjPilww/company-logo_200_200/company-logo_200_200/0/1655325704096/uwmadengr_logo?e=2147483647&v=beta&t=lCYTjUQ-FRheNkq9RYeuwmYFPMojKmHwZnJBo6q6UFQ',
@@ -67,6 +75,16 @@ const Experience = () => {
             ],
             'duration': 'Sep 2024 - Present',
             'skills': ['Python', 'Machine Learning', 'Scikit-Learn'],
+        },
+        {
+            'name': 'UW-Madison Interdisciplinary Professional Programs',
+            'image': 'https://media.licdn.com/dms/image/v2/C4D0BAQGWVW9DjPilww/company-logo_200_200/company-logo_200_200/0/1655325704096/uwmadengr_logo?e=2147483647&v=beta&t=lCYTjUQ-FRheNkq9RYeuwmYFPMojKmHwZnJBo6q6UFQ',
+            'title': 'Student Facilitator',
+            'description': [
+                '- Facilitated hands-on activities and provided guidance to industry professionals, including engineers and managers, in understanding and applying Machine Learning and Artificial Intelligence concepts to their careers.'
+            ],
+            'duration': 'Oct 2024 - Nov 2024',
+            'skills': ['Machine Learning', 'Artificial Intelligence', 'Python', 'Technical Instruction'],
         },
         {
             'name': 'Outlier.ai',
