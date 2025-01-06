@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 import SpotifyLogo from '@/spotify/SpotifyLogo'
 import PlayingAnimation from '@/spotify/PlayingAnimation';
-import defaultcoverart from '@/public/defaultcoverart.jpg'
+import defaultcoverart from '@/public/defaultcoverart.jpeg'
 import { LoadingSpinner } from './LoadingSpinner';
 import { Reveal } from './Reveal';
 
