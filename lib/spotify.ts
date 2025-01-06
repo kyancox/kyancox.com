@@ -49,6 +49,8 @@ const getAccessToken = async () => {
 export const getNowPlaying = async () => {
     const access_token = await getAccessToken();
 
+    // Return early if there was an error getting the access token
+    // Typically 401 (invalid client credentials) or 400 (invalid grant)
     if (access_token.error) {
         return access_token;
     }
@@ -59,18 +61,35 @@ export const getNowPlaying = async () => {
         }
     });
 
+    // Status 204: No content - Returned when no track is currently playing
+    // This is not an error, just indicates silence/no active playback
     if (response.status === 204) {
         console.error('No music is currently playing:', response.status, response.statusText);
         return { status: 204, message: 'No music is currently playing.' };
     }
 
+    // Handle other error responses:
+    // - 401: Unauthorized - Bad or expired token
+    // - 403: Forbidden - Bad OAuth request
+    // - 429: Too Many Requests - Rate limit exceeded
     if (!response.ok) {
         console.error('Failed to fetch now playing data:', response.status, response.statusText);
         return { error: { status: response.status, message: response.statusText } };
     }
 
+    // Handle JSON parsing errors
+    // This could happen if Spotify returns malformed JSON (rare)
+    // or if there are network/connectivity issues during the response
     try {
         const data = await response.json();
+        console.log(data)
+          // When this data is returned for local files, data.item.album.images[0].url will be undefined
+
+        const is_local : boolean = data.item.is_local
+
+        if (is_local) {
+        }
+
         return data;
     } catch (error) {
         console.error('Error parsing JSON:', error);

@@ -3,20 +3,117 @@ import Image from 'next/image';
 
 import SpotifyLogo from '@/spotify/SpotifyLogo'
 import PlayingAnimation from '@/spotify/PlayingAnimation';
+import defaultcoverart from '@/public/defaultcoverart.jpg'
 import { LoadingSpinner } from './LoadingSpinner';
 import { Reveal } from './Reveal';
 
-type NowPlayingResponse = {
-    albumImageUrl: string,
-    albumUrl: string,
+// Base type only includes common properties
+type BaseTrack = {
     artist: string,
-    artistUrl: string,
     isPlaying: string,
-    songUrl: string,
     title: string,
-    previewUrl: string,
     songUri: string
 }
+
+// Each specific type adds its own properties
+type SpotifyTrack = BaseTrack & {
+    is_local: false,
+    albumImageUrl: string,
+    albumUrl: string,
+    artistUrl: string,
+    songUrl: string,
+    previewUrl: string
+}
+
+type LocalTrack = BaseTrack & {
+    is_local: true,
+    albumImageUrl: null,
+    albumUrl: null,
+    artistUrl: null,
+    songUrl: null,
+    previewUrl: null
+}
+
+type NowPlayingResponse = SpotifyTrack | LocalTrack;
+
+function isSpotifyTrack(track: NowPlayingResponse): track is SpotifyTrack {
+    return !track.is_local;
+}
+
+const SpotifyTrackView = ({ track }: { track: SpotifyTrack }) => (
+    <div className='flex flex-row p-2.5 rounded-lg space-x-3 shadow-lg min-w-36 w-full xl:max-w-full' 
+         style={{ backgroundColor: '#121212' }}>
+        <Image
+            src={track.albumImageUrl}
+            alt={`${track.title} album art`}
+            width={96}
+            height={96}
+            className='rounded hover:opacity-60 transition duration-300 cursor-pointer'
+            onClick={() => window.open(track.albumUrl, '_blank')}
+        />
+        <div className='flex-1 min-w-0'>
+            <Reveal
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0, transition: { duration: 0.4, delay: 0.5 } }}
+            >
+                <div className='flex flex-row items-center justify-start space-x-2'>
+                    <PlayingAnimation />
+                    <div className='flex-1 min-w-0'>
+                        <p className='font-bold text-lg text-white overflow-hidden text-ellipsis whitespace-nowrap w-52 sm:w-full hover:underline cursor-pointer' 
+                           onClick={() => window.open(track.songUrl, '_blank')}>
+                            {track.title}
+                        </p>
+                    </div>
+                </div>
+            </Reveal>
+            <Reveal
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0, transition: { duration: 0.4, delay: 0.6 } }}
+            >
+                <p className='text-gray-400 text-sm hover:underline cursor-pointer' 
+                   onClick={() => window.open(track.artistUrl, '_blank')}>
+                    {track.artist}
+                </p>
+            </Reveal>
+        </div>
+    </div>
+);
+
+const LocalTrackView = ({ track }: { track: LocalTrack }) => (
+    <div className='flex flex-row p-2.5 rounded-lg space-x-3 shadow-lg min-w-36 w-full xl:max-w-full' 
+    style={{ backgroundColor: '#121212' }}>
+   <Image
+       src={defaultcoverart}
+       alt={`${track.title} album art`}
+       width={96}
+       height={96}
+       className='rounded hover:opacity-60 transition duration-300'
+   />
+   <div className='flex-1 min-w-0'>
+       <Reveal
+           initial={{ opacity: 0, x: 30 }}
+           whileInView={{ opacity: 1, x: 0, transition: { duration: 0.4, delay: 0.5 } }}
+       >
+           <div className='flex flex-row items-center justify-start space-x-2'>
+               <PlayingAnimation />
+               <div className='flex-1 min-w-0'>
+                   <p className='font-bold text-lg text-white overflow-hidden text-ellipsis whitespace-nowrap w-52 sm:w-full'>
+                       {track.title}
+                   </p>
+               </div>
+           </div>
+       </Reveal>
+       <Reveal
+           initial={{ opacity: 0, x: 30 }}
+           whileInView={{ opacity: 1, x: 0, transition: { duration: 0.4, delay: 0.6 } }}
+       >
+           <p className='text-gray-400 text-sm'>
+               {track.artist}
+           </p>
+       </Reveal>
+   </div>
+</div>
+);
 
 const NowPlaying = () => {
     const [nowPlaying, setNowPlaying] = useState<NowPlayingResponse | null>(null);
@@ -78,35 +175,11 @@ const NowPlaying = () => {
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0, transition: { duration: 0.4, delay: 0.4 } }}
             >
-                <div className='flex flex-row p-2.5 rounded-lg space-x-3 shadow-lg min-w-36 w-full xl:max-w-full' style={{ backgroundColor: '#121212', }}>
-                    <Image
-                        src={nowPlaying.albumImageUrl}
-                        alt={`${nowPlaying.title} album art`}
-                        width={96}
-                        height={96}
-                        className='rounded hover:opacity-60 transition duration-300 cursor-pointer'
-                        onClick={() => window.open(nowPlaying.albumUrl, '_blank')}
-                    />
-                    <div className='flex-1 min-w-0'>
-                        <Reveal
-                         initial={{ opacity: 0, x: 30 }}
-                         whileInView={{ opacity: 1, x: 0, transition: { duration: 0.4, delay: 0.5 } }}
-                        >
-                            <div className='flex flex-row items-center justify-start space-x-2'>
-                                <PlayingAnimation />
-                                <div className='flex-1 min-w-0'>
-                                    <p className='font-bold text-lg text-white overflow-hidden text-ellipsis whitespace-nowrap w-52 sm:w-full hover:underline cursor-pointer' onClick={() => window.open(nowPlaying.songUrl, '_blank')}>{nowPlaying.title}</p>
-                                </div>
-                            </div>
-                        </Reveal>
-                        <Reveal
-                         initial={{ opacity: 0, x: 30 }}
-                         whileInView={{ opacity: 1, x: 0, transition: { duration: 0.4, delay: 0.6 } }}
-                        >
-                            <p className='text-gray-400 text-sm hover:underline cursor-pointer' onClick={() => window.open(nowPlaying.artistUrl, '_blank')}>{nowPlaying.artist}</p>
-                        </Reveal>
-                    </div>
-                </div>
+                {isSpotifyTrack(nowPlaying) ? (
+                    <SpotifyTrackView track={nowPlaying} />
+                ) : (
+                    <LocalTrackView track={nowPlaying} />
+                )}
             </Reveal>
         </div>
     );
