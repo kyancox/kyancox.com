@@ -27,12 +27,12 @@ const Navbar = () => {
         const homeSection = document.querySelector('#home')
         const homeSectionBottom = homeSection ? homeSection.getBoundingClientRect().bottom : 0
 
-        console.log('window.scrollY: ', window.scrollY)
-        console.log('lastScrollY: ', lastScrollY)
+        // console.log('window.scrollY: ', window.scrollY)
+        // console.log('lastScrollY: ', lastScrollY)
 
         if (window.scrollY < lastScrollY || homeSectionBottom > 500) {
             setIsVisible(true)
-            console.log('setIsVisible(true)')
+            // console.log('setIsVisible(true)')
         } else {
             setIsVisible(false)
         }
