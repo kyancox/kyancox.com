@@ -129,6 +129,9 @@ const NowPlaying = () => {
                 const data = await response.json();
                 setNowPlaying(data);
             } catch (error) {
+                console.error(error)
+                // Call recently-played endpoint here. 
+                
                 setError('Unable to fetch currently playing data.');
             }
         };

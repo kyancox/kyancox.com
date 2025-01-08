@@ -1,9 +1,33 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import NowPlaying from '../NowPlaying'
 import TopTracks from '../TopTracks'
 import { Reveal } from '../Reveal'
 
 const About = () => {
+
+    const [recentlyPlayed, setRecentlyPlayed] = useState();
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        const fetchRecentlyPlayed = async () => {
+            try {
+                const response = await fetch('/api/recently-played');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch recently played data');
+                }
+                const data = await response.json();
+                setRecentlyPlayed(data);
+            } catch (error) {
+                console.error(error)
+                // Call recently-played endpoint here. 
+                
+                setError('Unable to fetch recently played data.');
+            }
+        };
+
+        fetchRecentlyPlayed();
+    }, []);
+    
     return (
         <section id='about' className="py-12">
             <p className="text-center text-4xl font-bold">About</p>

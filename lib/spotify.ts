@@ -13,6 +13,7 @@ const refresh_token = process.env.SPOTIFY_REFRESH_TOKEN
 const basic = btoa(`${client_id}:${client_secret}`);
 const NOW_PLAYING_ENDPOINT = `https://api.spotify.com/v1/me/player/currently-playing`;
 const TOP_TRACKS_ENDPOINT = `https://api.spotify.com/v1/me/top/tracks`;
+const RECENTLY_PLAYED_ENDPOINT = `https://api.spotify.com/v1/me/player/recently-played`
 const TOKEN_ENDPOINT = `https://accounts.spotify.com/api/token`;
 
 
@@ -63,6 +64,7 @@ export const getNowPlaying = async () => {
 
     // Status 204: No content - Returned when no track is currently playing
     // This is not an error, just indicates silence/no active playback
+    // If no music is playing, call recently played endpoint here. 
     if (response.status === 204) {
         console.error('No music is currently playing:', response.status, response.statusText);
         return { status: 204, message: 'No music is currently playing.' };
@@ -82,9 +84,9 @@ export const getNowPlaying = async () => {
     // or if there are network/connectivity issues during the response
     try {
         const data = await response.json();
-        console.log(data)
-          // When this data is returned for local files, data.item.album.images[0].url will be undefined
-
+        // console.log(data)
+        // When this data is returned for local files, data.item.album.images[0].url will be undefined
+        getRecentlyPlayed()  
         const is_local : boolean = data.item.is_local
 
         if (is_local) {
@@ -117,6 +119,38 @@ export const getTopTracks = async () => {
 
     try {
         const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error parsing JSON:', error);
+        return { error: { status: response.status, message: 'Invalid JSON response' } };
+    }
+};
+
+export const getRecentlyPlayed = async () => {
+    const access_token = await getAccessToken();
+    
+    if (access_token.error) {
+        return access_token;
+    }
+
+    const response = await fetch(`${RECENTLY_PLAYED_ENDPOINT}?limit=10`, {
+        headers: {
+            Authorization: `Bearer ${access_token}`
+        }
+    });
+
+    if (!response.ok) {
+        console.error('Failed to fetch recently played data:', response.status, response.statusText);
+        return { error: { status: response.status, message: response.statusText } };
+    }
+
+    try {
+        const data = await response.json();
+        console.log('data.items[0]')
+        console.log(data.items[3])
+        console.log()
+
+        // console.log(data.items[0].track.album)
         return data;
     } catch (error) {
         console.error('Error parsing JSON:', error);
