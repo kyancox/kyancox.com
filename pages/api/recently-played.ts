@@ -1,7 +1,26 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getRecentlyPlayed } from '../../lib/spotify';
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+// Define the track type
+export type RecentlyPlayedTrack = {
+  albumImageUrl: string;
+  artist: string;
+  artistUrl: string;
+  songUrl: string;
+  title: string;
+  songUri: string;
+  duration: string;
+  album: string;
+  albumUrl: string;
+  playedAt: string;
+};
+
+// Define the API response type
+export type ApiResponse = {
+  tracks: RecentlyPlayedTrack[];
+};
+
+export default async function handler(req: NextApiRequest, res: NextApiResponse<ApiResponse | { message: string }>) {
   try {
     const response = await getRecentlyPlayed();
 
@@ -17,7 +36,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return `${minutes}:${seconds.toString().padStart(2, '0')}`;
     };
 
-    const tracks = items.map((item: any) => ({
+    const tracks: RecentlyPlayedTrack[] = items.map((item: any) => ({
       albumImageUrl: item.track.album.images[0].url,
       artist: item.track.artists.map((_artist: any) => _artist.name).join(", "),
       artistUrl: item.track.artists[0].external_urls.spotify,
@@ -40,12 +59,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 function parseDateTime(isoString: string): string {
   const date = new Date(isoString);
   const now = new Date();
-  
+
   // Format time to HH:MM AM/PM
   const timeString = date.toLocaleString('en-US', {
     hour: 'numeric',
     minute: '2-digit',
-    hour12: true
+    hour12: true,
+    timeZone: 'America/Chicago' 
   });
 
   // Calculate days difference
@@ -53,14 +73,11 @@ function parseDateTime(isoString: string): string {
   const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
   // Generate relative day string
-  let dayString;
   if (diffDays === 0) {
-    dayString = 'today';
+    return `${timeString}`; // Just show time if it's today
   } else if (diffDays === 1) {
-    dayString = 'yesterday';
+    return `Yesterday, ${timeString}`;
   } else {
-    dayString = `${diffDays} days ago`;
+    return `${diffDays}d ago, ${timeString}`;
   }
-
-  return `${timeString} EST ${dayString}`;
 }

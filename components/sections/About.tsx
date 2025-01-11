@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react'
 import NowPlaying from '../NowPlaying'
 import TopTracks from '../TopTracks'
 import { Reveal } from '../Reveal'
+import type {RecentlyPlayedTrack, ApiResponse } from '@/pages/api/recently-played';
 
 const About = () => {
 
-    const [recentlyPlayed, setRecentlyPlayed] = useState();
+    const [recentlyPlayed, setRecentlyPlayed] = useState<RecentlyPlayedTrack[] | undefined>();
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
@@ -15,12 +16,10 @@ const About = () => {
                 if (!response.ok) {
                     throw new Error('Failed to fetch recently played data');
                 }
-                const data = await response.json();
-                setRecentlyPlayed(data);
+                const data: ApiResponse = await response.json();
+                setRecentlyPlayed(data.tracks);
             } catch (error) {
                 console.error(error)
-                // Call recently-played endpoint here. 
-                
                 setError('Unable to fetch recently played data.');
             }
         };
@@ -38,7 +37,7 @@ const About = () => {
                 >
                     <div className="flex xl:flex-row flex-col lg:items-start items-start justify-around  ">
                         <p className="text-lg text-center xl:w-1/2 mx-4 xl:mb-0 mb-2">I&apos;m currently a junior at the University of Wisconsin - Madison, pursuing a double major in Computer Science and Statistics, with a minor in Chinese Professional Communication. I&apos;m an aspiring developer fueled by my passions, which you can explore through my projects.</p>
-                        <NowPlaying />
+                        <NowPlaying recentlyPlayed={recentlyPlayed} />
                     </div>
                 </Reveal>
                 <TopTracks />
