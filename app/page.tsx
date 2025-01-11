@@ -18,19 +18,19 @@ export default function Home() {
 
       <Divider />
 
-      <Projects />
-
-      <Divider />
-
       <About />
 
       <Divider />
 
-      <Skills />
+      <Experience />
 
       <Divider />
 
-      <Experience />
+      <Projects />
+
+      <Divider />
+
+      <Skills />
 
       <Divider />
 

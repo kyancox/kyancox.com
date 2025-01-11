@@ -48,10 +48,10 @@ const Navbar = () => {
 
     const buttons = [
         // { name: 'Home', route: '#home' },
-        { name: 'Projects', route: '#projects' },
         { name: 'About', route: '#about' },
-        { name: 'Skills', route: '#skills' },
         { name: 'Experience', route: '#experience' },
+        { name: 'Projects', route: '#projects' },
+        { name: 'Skills', route: '#skills' },
         { name: 'Contact', route: '#contact' },
         { name: 'Resume', route: '/resume.pdf' },
     ]
