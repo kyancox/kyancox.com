@@ -60,12 +60,11 @@ function parseDateTime(isoString: string): string {
   const date = new Date(isoString);
   const now = new Date();
 
-  // Format time to HH:MM AM/PM
+  // Format time to HH:MM AM/PM using user's local timezone
   const timeString = date.toLocaleString('en-US', {
     hour: 'numeric',
     minute: '2-digit',
-    hour12: true,
-    timeZone: 'America/Chicago' 
+    hour12: true
   });
 
   // Calculate days difference
@@ -74,7 +73,7 @@ function parseDateTime(isoString: string): string {
 
   // Generate relative day string
   if (diffDays === 0) {
-    return `${timeString}`; // Just show time if it's today
+    return `at ${timeString}`; // Just show time if it's today
   } else if (diffDays === 1) {
     return `Yesterday, ${timeString}`;
   } else {

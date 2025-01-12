@@ -159,7 +159,7 @@ const NowPlaying = ({ recentlyPlayed }: NowPlayingProps) => {
                     >
                         <div className={`inline-flex flex-row items-center justify-start space-x-2 bg-spotify p-2 rounded-lg`}>
                             <SpotifyLogo />
-                            <p className='text-xl font-bold dark:text-white text-white'>Last played at {recentlyPlayed[0].playedAt}</p>
+                            <p className='text-xl font-bold dark:text-white text-white'>Last played {recentlyPlayed[0].playedAt}</p>
                         </div>
                     </Reveal>
                     <Reveal
