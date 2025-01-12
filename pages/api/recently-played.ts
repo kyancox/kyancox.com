@@ -46,7 +46,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       duration: msToMinutesAndSeconds(item.track.duration_ms),
       album: item.track.album.name,
       albumUrl: item.track.album.external_urls.spotify,
-      playedAt: parseDateTime(item.played_at)
+      playedAt: item.played_at
     }));
 
     return res.status(200).json({ tracks });
@@ -60,11 +60,12 @@ function parseDateTime(isoString: string): string {
   const date = new Date(isoString);
   const now = new Date();
 
-  // Format time to HH:MM AM/PM using user's local timezone
+  // Format time to HH:MM AM/PM
   const timeString = date.toLocaleString('en-US', {
     hour: 'numeric',
     minute: '2-digit',
-    hour12: true
+    hour12: true,
+    timeZone: 'America/Chicago' 
   });
 
   // Calculate days difference
