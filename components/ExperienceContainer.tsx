@@ -126,7 +126,7 @@ const Experience = () => {
 
     return (
         <div>
-            <Carousel setApi={setApi} className="w-2/3 lg:w-1/2 xl:w-1/4 xl:min-w-96 mx-auto ">
+            <Carousel setApi={setApi} className="w-1/2 lg:w-1/2 xl:w-1/4 xl:min-w-96 mx-auto ">
                 <CarouselContent>
                     {experiences.map(({ name, title, image, description, duration, skills }) => (
                         <CarouselItem key={title}>
