@@ -84,14 +84,8 @@ export const getNowPlaying = async () => {
     // or if there are network/connectivity issues during the response
     try {
         const data = await response.json();
-        // console.log(data)
+        console.log(data)
         // When this data is returned for local files, data.item.album.images[0].url will be undefined
-        getRecentlyPlayed()  
-        const is_local : boolean = data.item.is_local
-
-        if (is_local) {
-        }
-
         return data;
     } catch (error) {
         console.error('Error parsing JSON:', error);
