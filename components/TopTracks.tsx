@@ -64,10 +64,12 @@ const TopTracks = () => {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0, transition: { duration: 0.4, delay: 0.2 } }}
             >
-                <div className={`inline-flex flex-row items-center justify-start space-x-2 bg-spotify p-2 rounded-lg`}>
-                    <SpotifyLogo />
-                    <p className='text-xl font-bold text-white dark:text-white'>Top tracks this month</p>
-                </div>
+               <div className='w-full flex justify-center'>
+                 <div className={`inline-flex flex-row items-center justify-start space-x-2 bg-spotify p-2 rounded-lg`}>
+                     <SpotifyLogo />
+                     <p className='text-xl font-bold text-white dark:text-white'>Top tracks this month</p>
+                 </div>
+               </div>
             </Reveal>
             <Reveal
                 initial={{ opacity: 0, y: 30 }}

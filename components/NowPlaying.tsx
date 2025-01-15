@@ -43,7 +43,7 @@ function isSpotifyTrack(track: NowPlayingResponse): track is SpotifyTrack {
 }
 
 const SpotifyTrackView = ({ track }: { track: SpotifyTrack }) => (
-    <div className='flex flex-row p-2.5 rounded-lg space-x-3 shadow-lg min-w-36 w-full xl:max-w-full'
+    <div className='flex flex-row p-2.5 rounded-lg space-x-3 shadow-lg min-w-36 w-full xl:inline-flex'
         style={{ backgroundColor: '#121212' }}>
         <Image
             src={track.albumImageUrl}
@@ -194,9 +194,11 @@ const NowPlaying = ({ recentlyPlayed }: NowPlayingProps) => {
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0, transition: { duration: 0.4, delay: 0.3 } }}
             >
-                <div className={`inline-flex flex-row items-center justify-start space-x-2 bg-spotify p-2 rounded-lg`}>
-                    <SpotifyLogo />
-                    <p className='text-xl font-bold dark:text-white text-white'>Currently playing</p>
+                <div className="w-full flex justify-center">
+                    <div className={`inline-flex flex-row items-center justify-start space-x-2 bg-spotify p-2 rounded-lg`}>
+                        <SpotifyLogo />
+                        <p className='text-xl font-bold dark:text-white text-white'>Currently playing</p>
+                    </div>
                 </div>
             </Reveal>
             <Reveal
