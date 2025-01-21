@@ -52,7 +52,7 @@ const About = () => {
                         <div className='flex flex-col items-center text-lg text-center space-y-2 xl:w-1/2 px-4'>
                             <p>Hello! I&apos;m Kyan — a Computer Science student at UW-Madison with a passion for software development.</p>
                             <p>I&apos;ve loved programming ever since writing my first line of code in high school. Whether it&apos;s creating software to solve problems or exploring the possibilities of artificial intelligence and machine learning, I&apos;m always excited about building and learning. This summer, I&apos;ll be interning at Polaris as a Software Engineer. </p>
-                            <p>Outside of coding, music is a big part of my life. Explore my recent music taste below, powered by the Spotify Web API!</p>
+                            <p>Outside of coding, I love listening to music. Explore my recent music taste below, powered by the Spotify Web API!</p>
                         </div>
 
                     </div>
