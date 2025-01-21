@@ -43,7 +43,7 @@ const ProjectCard = ({ title, desc, bullets, image, link, skills, reverse, video
                     </Reveal>
                     <div className={`flex ${reverse ? 'xl:flex-row-reverse xl:space-x-reverse' : 'xl:flex-row'} flex-col items-center justify-center xl:space-x-8 xl:space-y-0 space-y-4`}>
                         <CardItem
-                            className="xl:w-1/2 mt-4 cursor-pointer"
+                            className={`xl:w-1/2 mt-4 ${title !== 'Visual Snow Log' && 'cursor-pointer'}`}
                             onClick={() => window.open(link, '_blank')}
                             translateZ={50}
                         >
@@ -55,8 +55,8 @@ const ProjectCard = ({ title, desc, bullets, image, link, skills, reverse, video
                                     src={image}
                                     height="1040"
                                     width="1800"
-                                    className="object-cover rounded-xl group-hover/card:shadow-xl hover:opacity-60 transition duration-50"
-                                    alt="thumbnail"
+                                    className={`object-cover rounded-xl group-hover/card:shadow-xl ${title !== 'Visual Snow Log' && 'hover:opacity-60 transition duration-50'}`}
+                                    alt={`${title} thumbnail`}
                                 />
                             </Reveal>
                         </CardItem>
@@ -144,7 +144,7 @@ const ProjectCard = ({ title, desc, bullets, image, link, skills, reverse, video
                         >
                             <CardItem
                                 as="button"
-                                className={`px-4 py-2 rounded-xl bg-foreground dark:text-black text-white text-xs font-bold hover:opacity-60 transition duration-50 ${title === 'Visual Snow Log' && 'cursor-not-allowed'}`}
+                                className={`px-4 py-2 rounded-xl bg-foreground dark:text-black text-white text-xs font-bold hover:opacity-60 transition duration-50 ${title === 'Visual Snow Log' && 'hidden'}`}
                                 onClick={() => window.open(link, '_blank')}
                                 translateZ={25}
                             >
