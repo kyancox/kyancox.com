@@ -53,7 +53,7 @@ const ContactForm = () => {
             </Reveal>
             <Reveal
                 initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0, transition: { duration: 0.5, delay: 0.2 } }}
+                whileInView={{ opacity: 1, x: 0, transition: { duration: 0.5, delay: 0.1 } }}
             >
                 <div>
                     <label htmlFor="email" className="block text-sm font-semibold text-foreground">Email</label>
@@ -70,7 +70,7 @@ const ContactForm = () => {
             </Reveal>
             <Reveal
                 initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0, transition: { duration: 0.5, delay: 0.4 } }}
+                whileInView={{ opacity: 1, x: 0, transition: { duration: 0.5, delay: 0.2 } }}
             >
                 <div>
                     <label htmlFor="message" className="block text-sm font-semibold text-foreground">Message</label>
@@ -87,7 +87,7 @@ const ContactForm = () => {
             </Reveal>
             <Reveal
                 initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0, transition: { duration: 0.5, delay: 0.5 } }}
+                whileInView={{ opacity: 1, x: 0, transition: { duration: 0.5, delay: 0.3 } }}
             >
                 <button
                     type="submit"

@@ -23,13 +23,13 @@ const Contact = () => {
 
         <Reveal
           initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.6 } }}
+          whileInView={{ opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.4 } }}
         >
           <p className='mt-1 mb-2 font-semibold text-2xl'>or reach me at</p>
         </Reveal>
         <Reveal
           initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.8 } }}
+          whileInView={{ opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.5 } }}
         >
           <div className="flex flex-row items-center justify-center space-x-2 my-3 ">
 
