@@ -23,28 +23,24 @@ const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const [hasAnimated, setHasAnimated] = useState(false)
 
-    const handleScroll = () => {
+    const handleScroll = React.useCallback(() => {
         const homeSection = document.querySelector('#home')
         const homeSectionBottom = homeSection ? homeSection.getBoundingClientRect().bottom : 0
 
-        // console.log('window.scrollY: ', window.scrollY)
-        // console.log('lastScrollY: ', lastScrollY)
-
         if (window.scrollY < lastScrollY || homeSectionBottom > 500) {
             setIsVisible(true)
-            // console.log('setIsVisible(true)')
         } else {
             setIsVisible(false)
         }
         setLastScrollY(window.scrollY)
-    }
+    }, [lastScrollY])
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll)
         return () => {
             window.removeEventListener('scroll', handleScroll)
         }
-    }, [lastScrollY])
+    }, [handleScroll])
 
     const buttons = [
         // { name: 'Home', route: '#home' },

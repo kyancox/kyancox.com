@@ -101,10 +101,11 @@ const timelineEntries: TimelineEntry[] = experiences.map((exp, index) => ({
                 <div className="mt-0">
                     {exp.description.map((desc, index) => (
                         <Reveal
+                            key={`desc-${index}`}
                             initial={{ opacity: 0, x: 30 }}
                             whileInView={{ opacity: 1, x: 0, transition: { duration: 0.4, delay: index / 20 + 0.4 } }}
                         >
-                            <p key={index} className="my-1 text-background dark:text-white">{desc}</p>
+                            <p key={`desc-${index}`} className="my-1 text-background dark:text-white">{desc}</p>
                         </Reveal>
                     ))}
                 </div>
