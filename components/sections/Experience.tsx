@@ -14,14 +14,14 @@ interface Experience {
 }
 
 const experiences: Experience[] = [
-    {
-        'name': 'Polaris',
-        'image': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTafoJOPymx98pp0KxdDjmLrUlyiBruiVMlnQ&s',
-        'title': 'Incoming Software Engineer Intern',
-        'description': [],
-        'duration': 'May 2025 - August 2025',
-        'skills': [],
-    },
+    // {
+    //     'name': 'Polaris',
+    //     'image': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTafoJOPymx98pp0KxdDjmLrUlyiBruiVMlnQ&s',
+    //     'title': 'Incoming Software Engineer Intern',
+    //     'description': [],
+    //     'duration': 'May 2025 - August 2025',
+    //     'skills': [],
+    // },
     {
         'name': 'UW-Madison College of Engineering',
         'image': 'https://media.licdn.com/dms/image/v2/C4D0BAQGWVW9DjPilww/company-logo_200_200/company-logo_200_200/0/1655325704096/uwmadengr_logo?e=2147483647&v=beta&t=lCYTjUQ-FRheNkq9RYeuwmYFPMojKmHwZnJBo6q6UFQ',
