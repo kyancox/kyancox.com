@@ -87,15 +87,15 @@ const About = () => {
                                     initial={{ opacity: 0, x: -30 }}
                                     whileInView={{ opacity: 1, x: 0, transition: { duration: 0.4, delay: 0.5 } }}
                                 >
-                                    <p className='text-lg font-bold text-ellipsis whitespace-nowrap overflow-hidden'>University of Wisconsin - Madison</p>
+                                    <p className='text-lg font-bold text-white text-ellipsis whitespace-nowrap overflow-hidden'>University of Wisconsin - Madison</p>
                                 </Reveal>
                                 <Reveal
                                     initial={{ opacity: 0, x: -30 }}
                                     whileInView={{ opacity: 1, x: 0, transition: { duration: 0.4, delay: 0.6 } }}
                                 >
-                                    <p><span className="font-bold">Majors:</span> Computer Science, Statistics</p>
-                                    <p><span className="font-bold">Expected:</span> May 2026</p>
-                                    <p><span className="font-bold">GPA:</span> 4.0</p>
+                                    <p className='text-white'><span className="font-bold">Majors:</span> Computer Science, Statistics</p>
+                                    <p className='text-white'><span className="font-bold">Expected:</span> May 2026</p>
+                                    <p className='text-white'><span className="font-bold">GPA:</span> 4.0</p>
                                 </Reveal>
                             </div>
                         </Reveal>
