@@ -43,7 +43,7 @@ const Projects = () => {
                     title="Visual Snow Log"
                     desc="A mobile app designed for those with Visual Snow Syndrome (VSS), a rare condition that affects ~3% of the world including myself. Visual Snow Log allows users to log and track their VSS symptoms over time, and export them to their email to show their doctor."
                     bullets={["Implemented user authentication and data storage using Supabase and PostgreSQL.", "Created a backend API with FastAPI and Python to handle data processing and export functionality, utilizing Pandas for data manipulation and the smtplib library for sending emails via SMTP.", "Deployed the backend on an AWS EC2 instance, containerizing the application using Docker for consistent development and deployment environments."]}
-                    link="https://llmcomparison.kyancox.com/"
+                    link="https://github.com/kyancox/Visual-Snow-Log-Mobile"
                     skills={['React Native', 'Expo', 'FastAPI', 'Pandas', 'AWS (EC2)', 'Docker', 'PostgreSQL', 'Supabase', 'TypeScript', 'Python', 'SQL']}
                     reverse={true}
                     image={visualsnowdemo}
