@@ -106,7 +106,8 @@ const About = () => {
 
             </div>
 
-            <div className='flex flex-col xl:items-center items-start justify-center lg:w-1/2 md:w-2/3 w-11/12 mx-auto mt-4'>
+            {/*TODO: PADDING LEFT HARD CODED STYLING FIX. FIX THIS NATURALLY IN THE FUTURE*/}
+            <div className='flex flex-col xl:items-center items-start justify-center 2xl:pl-12 lg:w-1/2 md:w-2/3 w-11/12 mx-auto mt-4'>
                 {/* <Reveal
                     initial={{ opacity: 0, x: 30 }}
                     whileInView={{ opacity: 1, x: 0, transition: { duration: 0.4, delay: 0.2 } }}
