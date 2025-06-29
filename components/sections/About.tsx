@@ -94,7 +94,7 @@ const About = () => {
                                     whileInView={{ opacity: 1, x: 0, transition: { duration: 0.4, delay: 0.6 } }}
                                 >
                                     <p className='text-white'><span className="font-bold">Majors:</span> Computer Science, Statistics</p>
-                                    <p className='text-white'><span className="font-bold">Expected:</span> May 2026</p>
+                                    <p className='text-white'><span className="font-bold">Expected:</span> May 2027</p>
                                     <p className='text-white'><span className="font-bold">GPA:</span> 4.0</p>
                                 </Reveal>
                             </div>
