@@ -46,7 +46,7 @@ const Contact = () => {
             </button>
 
             <button className="py-2.5 px-3.5 rounded-md bg-foreground flex flex-row items-center justify-center space-x-2 hover:translate-y-[-2px] hover:opacity-60 transition-transform duration-300"
-              onClick={() => window.open('mailto:kyan.cox@gmail.com', '_blank')}
+              onClick={() => window.open('mailto:kyan@cs.wisc.edu', '_blank')}
             >
               <Image
                 src={theme === 'light' ? emailWhite : emailDark}
@@ -54,7 +54,7 @@ const Contact = () => {
                 width={24}
                 height={24}
               />
-              <p className="text-base lg:text-lg font-semibold text-background">kyan.cox@gmail.com</p>
+              <p className="text-base lg:text-lg font-semibold text-background">kyan@cs.wisc.edu</p>
             </button>
 
           </div>
