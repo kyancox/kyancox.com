@@ -42,46 +42,50 @@ function isSpotifyTrack(track: NowPlayingResponse): track is SpotifyTrack {
     return !track.is_local;
 }
 
-const SpotifyTrackView = ({ track }: { track: SpotifyTrack }) => (
-    <div className='flex flex-row p-2.5 rounded-lg space-x-3 shadow-lg min-w-36 w-full xl:inline-flex'
-        style={{ backgroundColor: '#121212' }}>
-        <Image
-            src={track.albumImageUrl}
-            alt={`${track.title} album art`}
-            width={96}
-            height={96}
-            className='rounded hover:opacity-60 transition duration-300 cursor-pointer'
-            onClick={() => window.open(track.albumUrl, '_blank')}
-        />
-        <div className='flex-1 min-w-0'>
-            <Reveal
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0, transition: { duration: 0.4, delay: 0.5 } }}
-            >
-                <div className='flex flex-row items-center justify-start space-x-2'>
-                    {track.isPlaying ? <PlayingAnimation /> : ''}
-                    <div className='flex-1 min-w-0'>
-                        <p className='font-bold text-lg text-white overflow-hidden text-ellipsis whitespace-nowrap w-52 sm:w-full hover:underline cursor-pointer'
-                            onClick={() => window.open(track.songUrl, '_blank')}>
-                            {track.title}
-                        </p>
+const SpotifyTrackView = ({ track, isPaused }: { track: SpotifyTrack, isPaused?: boolean }) => {
+    console.log('SpotifyTrackView - isPaused:', isPaused, 'track.isPlaying:', track.isPlaying);
+    
+    return (
+        <div className='flex flex-row p-2.5 rounded-lg space-x-3 shadow-lg min-w-36 w-full xl:inline-flex'
+            style={{ backgroundColor: '#121212' }}>
+            <Image
+                src={track.albumImageUrl}
+                alt={`${track.title} album art`}
+                width={96}
+                height={96}
+                className='rounded hover:opacity-60 transition duration-300 cursor-pointer'
+                onClick={() => window.open(track.albumUrl, '_blank')}
+            />
+            <div className='flex-1 min-w-0'>
+                <Reveal
+                    initial={{ opacity: 0, x: 30 }}
+                    whileInView={{ opacity: 1, x: 0, transition: { duration: 0.4, delay: 0.5 } }}
+                >
+                    <div className='flex flex-row items-center justify-start space-x-2'>
+                        {(track.isPlaying || isPaused) ? <PlayingAnimation /> : null}
+                        <div className='flex-1 min-w-0'>
+                            <p className='font-bold text-lg text-white overflow-hidden text-ellipsis whitespace-nowrap w-52 sm:w-full hover:underline cursor-pointer'
+                                onClick={() => window.open(track.songUrl, '_blank')}>
+                                {track.title}
+                            </p>
+                        </div>
                     </div>
-                </div>
-            </Reveal>
-            <Reveal
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0, transition: { duration: 0.4, delay: 0.6 } }}
-            >
-                <p className='text-gray-400 text-sm hover:underline cursor-pointer'
-                    onClick={() => window.open(track.artistUrl, '_blank')}>
-                    {track.artist}
-                </p>
-            </Reveal>
+                </Reveal>
+                <Reveal
+                    initial={{ opacity: 0, x: 30 }}
+                    whileInView={{ opacity: 1, x: 0, transition: { duration: 0.4, delay: 0.6 } }}
+                >
+                    <p className='text-gray-400 text-sm hover:underline cursor-pointer'
+                        onClick={() => window.open(track.artistUrl, '_blank')}>
+                        {track.artist}
+                    </p>
+                </Reveal>
+            </div>
         </div>
-    </div>
-);
+    );
+};
 
-const LocalTrackView = ({ track }: { track: LocalTrack }) => (
+const LocalTrackView = ({ track, isPaused }: { track: LocalTrack, isPaused?: boolean }) => (
     <div className='flex flex-row p-2.5 rounded-lg space-x-3 shadow-lg min-w-36 w-full xl:max-w-full'
         style={{ backgroundColor: '#121212' }}>
         <Image
@@ -97,7 +101,7 @@ const LocalTrackView = ({ track }: { track: LocalTrack }) => (
                 whileInView={{ opacity: 1, x: 0, transition: { duration: 0.4, delay: 0.5 } }}
             >
                 <div className='flex flex-row items-center justify-start space-x-2'>
-                    <PlayingAnimation />
+                    {(track.isPlaying || isPaused) ? <PlayingAnimation /> : ''}
                     <div className='flex-1 min-w-0'>
                         <p className='font-bold text-lg text-white overflow-hidden text-ellipsis whitespace-nowrap w-52 sm:w-full'>
                             {track.title}
@@ -124,16 +128,57 @@ interface NowPlayingProps {
 const NowPlaying = ({ recentlyPlayed }: NowPlayingProps) => {
     const [nowPlaying, setNowPlaying] = useState<NowPlayingResponse | null>(null);
     const [error, setError] = useState<string | null>(null);
+    const [isPaused, setIsPaused] = useState(false);
+    const [wasPlaying, setWasPlaying] = useState(false);
+    const [isInitialLoad, setIsInitialLoad] = useState(true);
 
     useEffect(() => {
         const fetchNowPlaying = async () => {
             try {
                 const response = await fetch('/api/now-playing');
+                console.log('API Response status:', response.status);
+                
+                // Handle 204 specifically - no music playing
+                if (response.status === 204) {
+                    console.log('Got 204 - nowPlaying exists?', !!nowPlaying);
+                    // Only set isPaused if we already have a nowPlaying track
+                    if (nowPlaying) {
+                        console.log('Setting isPaused to true');
+                        setIsPaused(true);
+                    }
+                    // Otherwise, this is truly "not playing" - let it fall through to error
+                    else {
+                        console.log('No previous track, setting error');
+                        setError('No music playing');
+                    }
+                    return;
+                }
+                
                 if (!response.ok) {
                     throw new Error('Failed to fetch now playing data');
                 }
                 const data = await response.json();
+                console.log('Got playing data, isPlaying:', data.isPlaying);
+                
+                // Handle initial load with paused track
+                if (isInitialLoad && !data.isPlaying) {
+                    console.log('Initial load with paused track');
+                    setIsPaused(true);
+                    setIsInitialLoad(false);
+                }
+                // Check if we transitioned from playing to paused
+                else if (wasPlaying && !data.isPlaying) {
+                    console.log('Detected pause transition');
+                    setIsPaused(true);
+                } else if (data.isPlaying) {
+                    console.log('Currently playing, clearing pause state');
+                    setIsPaused(false);
+                    setIsInitialLoad(false);
+                }
+                
                 setNowPlaying(data);
+                setWasPlaying(data.isPlaying);
+                setError(null);
             } catch (error) {
                 console.error(error)
                 setError('Unable to fetch currently playing data.');
@@ -141,14 +186,45 @@ const NowPlaying = ({ recentlyPlayed }: NowPlayingProps) => {
         };
 
         fetchNowPlaying();
-    }, []);
+        const interval = setInterval(fetchNowPlaying, 5000);
+        return () => clearInterval(interval);
+    }, [nowPlaying, wasPlaying, isInitialLoad]);
+
+    // When paused, show the last playing track with animation
+    if (isPaused && nowPlaying) {
+        return (
+            <div className='my-2 space-y-2 w-full xl:w-1/2'>
+                <Reveal
+                    initial={{ opacity: 0, x: 30 }}
+                    whileInView={{ opacity: 1, x: 0, transition: { duration: 0.4, delay: 0.3 } }}
+                >
+                    <div className="w-full flex justify-center">
+                        <div className={`inline-flex flex-row items-center justify-start space-x-2 bg-spotify p-2 rounded-lg`}>
+                            <SpotifyLogo />
+                            <p className='text-xl font-bold dark:text-white text-white'>Recently played</p>
+                        </div>
+                    </div>
+                </Reveal>
+                <Reveal
+                    initial={{ opacity: 0, x: 30 }}
+                    whileInView={{ opacity: 1, x: 0, transition: { duration: 0.4, delay: 0.4 } }}
+                >
+                    {isSpotifyTrack(nowPlaying) ? (
+                        <SpotifyTrackView track={{...nowPlaying, isPlaying: false}} isPaused={false} />
+                    ) : (
+                        <LocalTrackView track={{...nowPlaying, isPlaying: false}} isPaused={false} />
+                    )}
+                </Reveal>
+            </div>
+        );
+    }
 
     // If error, return recently played track
-    if (error) {
+    if (error || (isPaused && !nowPlaying)) {
         if (recentlyPlayed && recentlyPlayed[0]) {
             const transformedTrack: SpotifyTrack = {
                 ...recentlyPlayed[0],
-                isPlaying: false,
+                isPlaying: false, // Never show animation for "Last played"
                 is_local: false,
                 previewUrl: null as unknown as string
             };
@@ -160,14 +236,16 @@ const NowPlaying = ({ recentlyPlayed }: NowPlayingProps) => {
                     >
                         <div className={`inline-flex flex-row items-center justify-start space-x-2 bg-spotify p-2 rounded-lg`}>
                             <SpotifyLogo />
-                            <p className='text-xl font-bold dark:text-white text-white'>Last played {formatDateTime(recentlyPlayed[0].playedAt)}</p>
+                            <p className='text-xl font-bold dark:text-white text-white'>
+                                Last played {formatDateTime(recentlyPlayed[0].playedAt)}
+                            </p>
                         </div>
                     </Reveal>
                     <Reveal
                         initial={{ opacity: 0, x: 30 }}
                         whileInView={{ opacity: 1, x: 0, transition: { duration: 0.4, delay: 0.4 } }}
                     >
-                        <SpotifyTrackView track={transformedTrack} />
+                        <SpotifyTrackView track={transformedTrack} isPaused={false} />
                     </Reveal>
                 </div>
             );
@@ -206,9 +284,9 @@ const NowPlaying = ({ recentlyPlayed }: NowPlayingProps) => {
                 whileInView={{ opacity: 1, x: 0, transition: { duration: 0.4, delay: 0.4 } }}
             >
                 {isSpotifyTrack(nowPlaying) ? (
-                    <SpotifyTrackView track={nowPlaying} />
+                    <SpotifyTrackView track={nowPlaying} isPaused={false} />
                 ) : (
-                    <LocalTrackView track={nowPlaying} />
+                    <LocalTrackView track={nowPlaying} isPaused={false} />
                 )}
             </Reveal>
         </div>
@@ -232,25 +310,4 @@ export default NowPlaying;
 //             const { songUri } = data;
 
 //             if (songUri) {
-//                 const embedResponse = await fetch(`/api/embed?uri=${encodeURIComponent(songUri)}`);
-//                 const embedData = await embedResponse.json();
-//                 setEmbedHtml(embedData.html);
-//             }
-//         };
-
-//         fetchNowPlaying();
-//     }, []);
-
-//     if (!embedHtml) {
-//         return <div>Loading...</div>;
-//     }
-
-//     return (
-//         <div>
-//             <h1>Now Playing</h1>
-//             <div dangerouslySetInnerHTML={{ __html: embedHtml }} />
-//         </div>
-//     );
-// };
-
-// export default NowPlaying;
+//                 const embedResponse = await fetch(`
