@@ -1,5 +1,4 @@
 import React from 'react'
-import ExperienceContainer from '../ExperienceContainer'
 import { Timeline, TimelineEntry } from '../ui/timeline'
 import Image from 'next/image'
 import { Reveal } from '../Reveal';
@@ -14,24 +13,32 @@ interface Experience {
 }
 
 const experiences: Experience[] = [
-    // {
-    //     'name': 'Polaris',
-    //     'image': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTafoJOPymx98pp0KxdDjmLrUlyiBruiVMlnQ&s',
-    //     'title': 'Incoming Software Engineer Intern',
-    //     'description': [],
-    //     'duration': 'May 2025 - August 2025',
-    //     'skills': [],
-    // },
+    {
+        'name': 'Gemini',
+        'image': 'https://thegivingblock.com/wp-content/uploads/2021/12/Gemini-600px.png',
+        'title': 'Software Engineer Intern',
+        'description': [],
+        'duration': 'June 2025 - August 2025',
+        'skills': ['React', 'React Native', 'Scala', 'PostgreSQL', 'Next.js', 'Tailwind CSS', 'Hono'],
+    },
+    {
+        'name': 'UW-Madison Computer Sciences Department',
+        'image': 'https://media.licdn.com/dms/image/v2/D560BAQEV5rAACO5NNg/company-logo_200_200/B56ZiuaWQbG4AM-/0/1755272800345/uw_madison_computer_sciences_logo?e=1759968000&v=beta&t=tiSuQZ9R-bdAtl6BTormDMzedA7geOf-_ZT0HsQodBg',
+        'title': 'Undergraduate Teaching Assistant - Algorithms',
+        'description': ['CS577: Intro to Algorithms'],
+        'duration': 'August 2025 - Present',
+        'skills': ['Data Structures', 'Algorithms'],
+    },
     {
         'name': 'UW-Madison College of Engineering',
         'image': 'https://media.licdn.com/dms/image/v2/C4D0BAQGWVW9DjPilww/company-logo_200_200/company-logo_200_200/0/1655325704096/uwmadengr_logo?e=2147483647&v=beta&t=lCYTjUQ-FRheNkq9RYeuwmYFPMojKmHwZnJBo6q6UFQ',
-        'title': 'AI/ML Undergraduate Researcher',
+        'title': 'Undergraduate Research Assistant',
         'description': [
             '- Collaborated with a team of 10 peers to develop machine learning models, including gradient-boosted trees, identifying key factors impacting donation campaigns for The River Food Pantry, the largest food pantry in Wisconsin.',
             '- Applied predictive analytics and SHAP analysis to evaluate model accuracy and interpretability, offering detailed insights into feature importance, enhancing donor engagement strategies, and improving resource allocation for the non-profit organization.',
             '- Occasionally volunteering at The River Food Pantry, helping with manual labor while also meeting with directors to discuss application, allocation, and usage of donation data.'
         ],
-        'duration': 'September 2024 - Present',
+        'duration': 'September 2024 - May 2025',
         'skills': ['Python', 'Machine Learning', 'Scikit-Learn'],
     },
     {
@@ -45,20 +52,9 @@ const experiences: Experience[] = [
         'skills': ['Machine Learning', 'Artificial Intelligence', 'Python', 'Technical Instruction'],
     },
     {
-        'name': 'Outlier.ai',
-        'image': 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAABHVBMVEVHcExYxdpbyN45hpa0nsjBob4vd5BuscV/t8dWqbsoe46nrcxbyN1byN5byd4ycpZbyN1cyd00hJMucZLBsrWFmqJbyd1ZxNowcpI0fJYqZ5Ngj6CvrLqFp7rOsrTJlbKlqLFbyN14v9BPmqQyfJE7hJTNe6zUiaurk8DYt6/hta5byN1RlKBEk7dLrsJTvNTQcqpWv9S8nMjltq7ana5byN0sbqA6ipUsaZZBhZU/jZY5epRzlcqQs8w0hpM5dqZHjZZXwdYtgpOfiLuviLSLock/ka81c6Juh7p7kscycZe7fbHLea1/ocuGqsuVlMPQkK7ku6/Xpa9Dj5ecoMuNi8BhgbBMq8WlmcaMl8W/nb9rl5yzrKfKs6xOfbKStIKHAAAANXRSTlMAVeRs/RZFDwUm/fnR9RjScrLWmjT8uKCA8Oz7kZNBbfW/R8y6/J4uyJnOgk2y67fgzLa5vF7EYFYAAAG/SURBVDiNzZJrV4JAEIYXBVfwknlJ63g5lWn3u4iiYgaGKApUlkft//+MZhch89THzun9tvO8OzM7swj9H4VxHITx6sARhdcwn9gJ1GqxaJbBmCvmb1mWjUTyaY/HE0BXuiocsyzlkUj7wOX8to8f3vqK/s6y7y8vbSJ+k/cVkD4BrmnjcbtdIPV3fA7Xn0CKPptppmmOwQIGxoWB/e3sxdauKEqiqOiDltkyTU3TEMJuf9EEeSGf2pPAIH60QIPZZDLxEgRW/eIcdSg68NfXx8djhLKEx868F+OURBzTwQCwqpYQitIEcX9mQZpiCtfV4XDIIRSjHXwNNbQlSYY4hevD0agCAdrC/jeDYRhTlfDrKvopgyHLRka1LGtUIgE6psuQb8jJoE7GcSyrwpFAgk64jP0EstxodBeO49xz7qaIoSekeJeXATca86Vtn3rLhlU9CIJQzoVCwVTyCHC3u7Dtu6JXlI+BodfrdZLJXRc3M0v7pPrVNwMlgHc69Xq92QQ+X56WuPXvyNTeBI8/Pzfni5P02nekjpu+z7uZfJFDGwrHmcO6W+CwkMab2N0iHwSd8zj8I6ZpQL/CP9UnYHZir4Z66IUAAAAASUVORK5CYII=',
-        'title': 'AI Training (Contract)',
-        'description': [
-            '- Evaluated AI-generated code using RLHF techniques to enhance LLM accuracy.',
-            '- Developed and implemented test cases for Python and JavaScript, ensuring high-quality AI performance.'
-        ],
-        'duration': 'May 2024 - August 2024',
-        'skills': ['RLHF', 'Python', 'Java', 'TypeScript', 'JavaScript', 'C'],
-    },
-    {
         'name': 'Rye Chamber of Commerce',
         'image': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo3zj0ZVwirp7-Fo-7cgSvHJFSIknQvxYmQA&s',
-        'title': 'Intern - Software',
+        'title': 'Intern',
         'description': [
             '- Simplified a multi-day process of extracting and cleaning data from spreadsheets through Python and the Pandas library, aiding in the identification of over 200 potential customers, ultimately maximizing funds for events.',
             '- Developed a mail merge process in Python to create outreach envelopes for prospective customers.'
@@ -98,7 +94,7 @@ const timelineEntries: TimelineEntry[] = experiences.map((exp, index) => ({
                     <h4 className="text-base font-semibold text-neutral-400 mt-1">{exp.title}</h4>
 
                 </Reveal>
-                <div className="mt-0">
+                {/* <div className="mt-0">
                     {exp.description.map((desc, index) => (
                         <Reveal
                             key={`desc-${index}`}
@@ -108,7 +104,7 @@ const timelineEntries: TimelineEntry[] = experiences.map((exp, index) => ({
                             <p key={`desc-${index}`} className="my-1 text-background dark:text-white">{desc}</p>
                         </Reveal>
                     ))}
-                </div>
+                </div> */}
                 <div className="flex flex-row flex-wrap justify-center mt-2">
                     {exp.skills.map((skill, index) => (
                         <Reveal
