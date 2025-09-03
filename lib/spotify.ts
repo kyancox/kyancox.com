@@ -84,7 +84,7 @@ export const getNowPlaying = async () => {
     // or if there are network/connectivity issues during the response
     try {
         const data = await response.json();
-        console.log(data)
+        // console.log(data)
         // When this data is returned for local files, data.item.album.images[0].url will be undefined
         return data;
     } catch (error) {
@@ -93,14 +93,14 @@ export const getNowPlaying = async () => {
     }
 };
 
-export const getTopTracks = async () => {
+export const getTopTracks = async (timeRange: string = 'short_term') => {
     const access_token = await getAccessToken();
     
     if (access_token.error) {
         return access_token;
     }
 
-    const response = await fetch(`${TOP_TRACKS_ENDPOINT}?time_range=short_term&limit=5&offset=0`, {
+    const response = await fetch(`${TOP_TRACKS_ENDPOINT}?time_range=${timeRange}&limit=5&offset=0`, {
         headers: {
             Authorization: `Bearer ${access_token}`
         }

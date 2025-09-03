@@ -1,11 +1,18 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useTheme } from 'next-themes'
+import { ChevronDown } from 'lucide-react';
 
 import SpotifyLogo from '@/spotify/SpotifyLogo'
 import PlayingAnimation from '@/spotify/PlayingAnimation';
 import { LoadingSpinner } from './LoadingSpinner';
 import { Reveal } from './Reveal';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 type topTracksResponse = {
     albumImageUrl: string,
@@ -21,38 +28,56 @@ type topTracksResponse = {
     albumUrl: string,
 }
 
+type TimeRange = 'short_term' | 'medium_term' | 'long_term';
+
+const timeRangeLabels: Record<TimeRange, string> = {
+  'short_term': 'this month',
+  'medium_term': 'past 6 months', 
+  'long_term': 'this year'
+};
+
 const TopTracks = () => {
     const { theme } = useTheme();
     const [topTracks, setTopTracks] = useState<topTracksResponse[] | null>();
     const [error, setError] = useState<string | null>(null);
+    const [timeRange, setTimeRange] = useState<TimeRange>('short_term');
+    const [isLoading, setIsLoading] = useState(false);
+
+    const fetchTopTracks = async (range: TimeRange) => {
+        setIsLoading(true);
+        try {
+            const response = await fetch(`/api/top-tracks?time_range=${range}`);
+            if (!response.ok) {
+                throw new Error('Failed to fetch top tracks data');
+            }
+            const data = await response.json();
+            const tracks = data.tracks;
+            setTopTracks(tracks);
+            setError(null);
+        } catch (error) {
+            setError('Unable to fetch top tracks data.');
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
     useEffect(() => {
-        const fetchTopTracks = async () => {
-            try {
-                const response = await fetch('/api/top-tracks');
-                if (!response.ok) {
-                    throw new Error('Failed to fetch now playing data');
-                }
-                const data = await response.json();
-                const tracks = data.tracks
-                setTopTracks(tracks);
-            } catch (error) {
-                setError('Unable to fetch currently playing data.');
-            }
-        };
+        fetchTopTracks(timeRange);
+    }, [timeRange]);
 
-        fetchTopTracks();
-    }, []);
+    const handleTimeRangeChange = (newTimeRange: TimeRange) => {
+        setTimeRange(newTimeRange);
+    };
 
     if (error) {
         return null;
     }
 
-    if (!topTracks) {
+    if (!topTracks || isLoading) {
         return <div className='my-2 flex xl:flex-col xl:space-y-1 space-y-0 flex-row space-x-2 xl:space-x-0 items-center justify-end'>
             <div className={`inline-flex flex-row items-center justify-start space-x-2 bg-spotify p-2 rounded-lg`}>
                 <SpotifyLogo />
-                <p className='text-xl font-bold text-white dark:text-white'>Top tracks this month</p>
+                <p className='text-xl font-bold text-white dark:text-white'>Top tracks {timeRangeLabels[timeRange]}</p>
             </div>
             <LoadingSpinner />
         </div>;
@@ -67,7 +92,37 @@ const TopTracks = () => {
                <div className='w-full flex justify-center'>
                  <div className={`inline-flex flex-row items-center justify-start space-x-2 bg-spotify p-2 rounded-lg`}>
                      <SpotifyLogo />
-                     <p className='text-xl font-bold text-white dark:text-white'>Top tracks this month</p>
+                     <div className='flex items-center space-x-1'>
+                         <p className='text-xl font-bold text-white dark:text-white'>Top tracks</p>
+                         <DropdownMenu>
+                             <DropdownMenuTrigger asChild>
+                                 <button className='flex items-center space-x-1 text-xl font-bold text-white dark:text-white hover:opacity-80 transition-opacity'>
+                                     <span>{timeRangeLabels[timeRange]}</span>
+                                     <ChevronDown className='h-4 w-4' />
+                                 </button>
+                             </DropdownMenuTrigger>
+                             <DropdownMenuContent align="center" className='bg-spotify border-spotify'>
+                                 <DropdownMenuItem 
+                                     onClick={() => handleTimeRangeChange('short_term')}
+                                     className='text-white hover:bg-spotify/80 focus:bg-spotify/80'
+                                 >
+                                     this month
+                                 </DropdownMenuItem>
+                                 <DropdownMenuItem 
+                                     onClick={() => handleTimeRangeChange('medium_term')}
+                                     className='text-white hover:bg-spotify/80 focus:bg-spotify/80'
+                                 >
+                                     past 6 months
+                                 </DropdownMenuItem>
+                                 <DropdownMenuItem 
+                                     onClick={() => handleTimeRangeChange('long_term')}
+                                     className='text-white hover:bg-spotify/80 focus:bg-spotify/80'
+                                 >
+                                     this year
+                                 </DropdownMenuItem>
+                             </DropdownMenuContent>
+                         </DropdownMenu>
+                     </div>
                  </div>
                </div>
             </Reveal>

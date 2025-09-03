@@ -3,7 +3,16 @@ import { getTopTracks } from '../../lib/spotify';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
-    const response = await getTopTracks();
+    // Get time range from query parameter, default to 'short_term'
+    const timeRange = req.query.time_range as string || 'short_term';
+    
+    // Validate time range
+    const validTimeRanges = ['short_term', 'medium_term', 'long_term'];
+    if (!validTimeRanges.includes(timeRange)) {
+      return res.status(400).json({ message: 'Invalid time range. Must be short_term, medium_term, or long_term' });
+    }
+
+    const response = await getTopTracks(timeRange);
 
     if (response.error) {
       return res.status(response.error.status).json({ message: response.error.message });
@@ -16,7 +25,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const seconds = Math.floor((ms % 60000) / 1000);
       return `${minutes}:${seconds.toString().padStart(2, '0')}`;
     };
-
 
     const tracks = items.map((item: any) => ({
       albumImageUrl: item.album.images[0].url,
