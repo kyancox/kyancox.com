@@ -2,6 +2,8 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import nodemailer from 'nodemailer'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  return res.status(403).json({ message: 'This endpoint is disabled.' })
+
   if (req.method === 'POST') {
     const { name, email, message } = req.body
 

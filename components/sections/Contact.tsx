@@ -3,8 +3,6 @@ import Image from 'next/image'
 import { useTheme } from 'next-themes'
 
 import linkedin from '@/public/linkedin.svg'
-import ContactForm from '../ContactForm'
-import Divider from '../Divider'
 import { Reveal } from '../Reveal'
 
 
@@ -18,15 +16,6 @@ const Contact = () => {
     <section id="contact" className="py-12">
       <p className="text-center text-4xl font-bold">Contact Me</p>
       <div className='flex flex-col items-center justify-center'>
-
-        <ContactForm />
-
-        <Reveal
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.4 } }}
-        >
-          <p className='mt-1 mb-2 font-semibold text-2xl'>or reach me at</p>
-        </Reveal>
         <Reveal
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.5 } }}
