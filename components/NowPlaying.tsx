@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 
 import SpotifyLogo from '@/spotify/SpotifyLogo'
@@ -151,8 +151,13 @@ const NowPlaying = ({ recentlyPlayed }: NowPlayingProps) => {
     const [isPaused, setIsPaused] = useState(false);
     const [wasPlaying, setWasPlaying] = useState(false);
     const [isInitialLoad, setIsInitialLoad] = useState(true);
+    const nowPlayingRef = useRef<NowPlayingResponse | null>(null);
+    const wasPlayingRef = useRef(false);
+    const isInitialLoadRef = useRef(true);
 
     useEffect(() => {
+        let isMounted = true;
+
         const fetchNowPlaying = async () => {
             try {
                 const response = await fetch('/api/now-playing');
@@ -160,9 +165,12 @@ const NowPlaying = ({ recentlyPlayed }: NowPlayingProps) => {
                 
                 // Handle 204 specifically - no music playing
                 if (response.status === 204) {
-                    console.log('Got 204 - nowPlaying exists?', !!nowPlaying);
+                    console.log('Got 204 - nowPlaying exists?', !!nowPlayingRef.current);
                     // Only set isPaused if we already have a nowPlaying track
-                    if (nowPlaying) {
+                    if (!isMounted) {
+                        return;
+                    }
+                    if (nowPlayingRef.current) {
                         console.log('Setting isPaused to true');
                         setIsPaused(true);
                     }
@@ -179,36 +187,50 @@ const NowPlaying = ({ recentlyPlayed }: NowPlayingProps) => {
                 }
                 const data = await response.json();
                 console.log('Got playing data, isPlaying:', data.isPlaying);
+                if (!isMounted) {
+                    return;
+                }
                 
                 // Handle initial load with paused track
-                if (isInitialLoad && !data.isPlaying) {
+                if (isInitialLoadRef.current && !data.isPlaying) {
                     console.log('Initial load with paused track');
                     setIsPaused(true);
                     setIsInitialLoad(false);
+                    isInitialLoadRef.current = false;
                 }
                 // Check if we transitioned from playing to paused
-                else if (wasPlaying && !data.isPlaying) {
+                else if (wasPlayingRef.current && !data.isPlaying) {
                     console.log('Detected pause transition');
                     setIsPaused(true);
                 } else if (data.isPlaying) {
                     console.log('Currently playing, clearing pause state');
                     setIsPaused(false);
-                    setIsInitialLoad(false);
+                    if (isInitialLoadRef.current) {
+                        setIsInitialLoad(false);
+                        isInitialLoadRef.current = false;
+                    }
                 }
                 
                 setNowPlaying(data);
+                nowPlayingRef.current = data;
                 setWasPlaying(data.isPlaying);
+                wasPlayingRef.current = data.isPlaying;
                 setError(null);
             } catch (error) {
                 console.error(error)
-                setError('Unable to fetch currently playing data.');
+                if (isMounted) {
+                    setError('Unable to fetch currently playing data.');
+                }
             }
         };
 
         fetchNowPlaying();
-        const interval = setInterval(fetchNowPlaying, 5000);
-        return () => clearInterval(interval);
-    }, [nowPlaying, wasPlaying, isInitialLoad]);
+        const interval = window.setInterval(fetchNowPlaying, 5000);
+        return () => {
+            isMounted = false;
+            window.clearInterval(interval);
+        };
+    }, []);
 
     // When paused, show the last playing track with animation
     if (isPaused && nowPlaying) {
