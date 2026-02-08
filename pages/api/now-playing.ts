@@ -2,6 +2,11 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { getNowPlaying } from '../../lib/spotify';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+    if (req.method !== 'GET') {
+        res.setHeader('Allow', ['GET']);
+        return res.status(405).json({ message: `Method ${req.method} Not Allowed` });
+    }
+
     try {
         const response = await getNowPlaying();
         
@@ -19,19 +24,32 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             return res.status(response.error.status).json({ message: response.error.message });
         }
 
-        const is_local : boolean = response.item.is_local
-        // These fields are always present for local files
-        const title = response.item.name;
-        const explicit = is_local ? false : response.item.explicit;
-        const songUri = response.item.uri;
-        const isPlaying = response.is_playing;
-        // The following fields may be null for local files
-        const albumImageUrl = is_local ? 'https://open.spotify.com' : response.item.album.images[0].url;
-        const albumUrl = is_local ? 'https://open.spotify.com' : response.item.album.external_urls.spotify;
-        const artist = is_local ? 'From Local Files' : response.item.artists.map((_artist: any) => _artist.name).join(", ");
-        const artistUrl = is_local ? 'https://open.spotify.com' : response.item.artists[0].external_urls.spotify;
-        const songUrl = is_local ? 'https://open.spotify.com' : response.item.external_urls.spotify;
-        const previewUrl = is_local ? 'https://open.spotify.com' : response.preview_url;
+        const item = response?.item;
+        if (!item) {
+            return res.status(204).end();
+        }
+
+        const is_local: boolean = Boolean(item.is_local);
+        const artists = Array.isArray(item.artists) ? item.artists : [];
+        const firstArtist = artists[0];
+        const album = item.album ?? null;
+        const albumImages = Array.isArray(album?.images) ? album.images : [];
+
+        const title = item.name ?? 'Unknown Track';
+        const explicit = is_local ? false : Boolean(item.explicit);
+        const songUri = item.uri ?? '';
+        const isPlaying = Boolean(response.is_playing);
+        const albumImageUrl = is_local ? null : albumImages[0]?.url ?? 'https://open.spotify.com';
+        const albumUrl = is_local ? null : album?.external_urls?.spotify ?? 'https://open.spotify.com';
+        const artist = is_local
+            ? 'From Local Files'
+            : artists
+                .map((_artist: any) => _artist?.name)
+                .filter(Boolean)
+                .join(', ') || 'Unknown Artist';
+        const artistUrl = is_local ? null : firstArtist?.external_urls?.spotify ?? 'https://open.spotify.com';
+        const songUrl = is_local ? null : item.external_urls?.spotify ?? 'https://open.spotify.com';
+        const previewUrl = is_local ? null : item.preview_url ?? null;
 
         const data = {
             is_local,

@@ -1,4 +1,3 @@
-import { openAsBlob } from 'fs';
 import React, { useState } from 'react';
 import { Reveal } from './Reveal';
 
