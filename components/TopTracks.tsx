@@ -7,6 +7,7 @@ import SpotifyLogo from '@/spotify/SpotifyLogo'
 import PlayingAnimation from '@/spotify/PlayingAnimation';
 import { LoadingSpinner } from './LoadingSpinner';
 import { Reveal } from './Reveal';
+import { sanitizeExplicitSongTitle } from '@/lib/utils';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -21,6 +22,7 @@ type topTracksResponse = {
     isPlaying: string,
     songUrl: string,
     title: string,
+    explicit: boolean,
     previewUrl: string,
     songUri: string,
     duration: string,
@@ -150,7 +152,16 @@ const TopTracks = () => {
                                     />
 
                                     <div className='flex flex-col mx-4 flex-1 min-w-0'>
-                                        <p className='text-white overflow-hidden text-ellipsis whitespace-nowrap hover:underline cursor-pointer' onClick={() => window.open(track.songUrl, '_blank')}>{track.title}</p>
+                                        <div className='flex flex-row items-center gap-2 min-w-0'>
+                                            <p className='text-white overflow-hidden text-ellipsis whitespace-nowrap hover:underline cursor-pointer min-w-0' onClick={() => window.open(track.songUrl, '_blank')}>
+                                                {sanitizeExplicitSongTitle(track.title, track.explicit)}
+                                            </p>
+                                            {track.explicit ? (
+                                                <span className='text-[10px] leading-none font-bold text-black bg-gray-200 rounded px-1.5 py-0.5 flex-shrink-0'>
+                                                    E
+                                                </span>
+                                            ) : null}
+                                        </div>
                                         <p className='text-gray-400 text-xs hover:underline cursor-pointer' onClick={() => window.open(track.artistUrl, '_blank')}>{track.artist}</p>
                                     </div>
 

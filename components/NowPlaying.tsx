@@ -7,13 +7,14 @@ import defaultcoverart from '@/public/defaultcoverart.jpeg'
 import { LoadingSpinner } from './LoadingSpinner';
 import { Reveal } from './Reveal';
 import type { RecentlyPlayedTrack } from '@/pages/api/recently-played';
-import { formatDateTime } from '@/lib/utils';
+import { formatDateTime, sanitizeExplicitSongTitle, sanitizeSongTitle } from '@/lib/utils';
 
 // Base type only includes common properties
 type BaseTrack = {
     artist: string,
     isPlaying: boolean,
     title: string,
+    explicit: boolean,
     songUri: string
 }
 
@@ -64,10 +65,17 @@ const SpotifyTrackView = ({ track, isPaused }: { track: SpotifyTrack, isPaused?:
                     <div className='flex flex-row items-center justify-start space-x-2'>
                         {(track.isPlaying || isPaused) ? <PlayingAnimation /> : null}
                         <div className='flex-1 min-w-0'>
-                            <p className='font-bold text-lg text-white overflow-hidden text-ellipsis whitespace-nowrap w-52 sm:w-full hover:underline cursor-pointer'
-                                onClick={() => window.open(track.songUrl, '_blank')}>
-                                {track.title}
-                            </p>
+                            <div className='flex flex-row items-center gap-2 w-52 sm:w-full min-w-0'>
+                                <p className='font-bold text-lg text-white overflow-hidden text-ellipsis whitespace-nowrap hover:underline cursor-pointer min-w-0'
+                                    onClick={() => window.open(track.songUrl, '_blank')}>
+                                    {sanitizeExplicitSongTitle(track.title, track.explicit)}
+                                </p>
+                                {track.explicit ? (
+                                    <span className='text-[10px] leading-none font-bold text-black bg-gray-200 rounded px-1.5 py-0.5 flex-shrink-0'>
+                                        E
+                                    </span>
+                                ) : null}
+                            </div>
                         </div>
                     </div>
                 </Reveal>
@@ -85,41 +93,53 @@ const SpotifyTrackView = ({ track, isPaused }: { track: SpotifyTrack, isPaused?:
     );
 };
 
-const LocalTrackView = ({ track, isPaused }: { track: LocalTrack, isPaused?: boolean }) => (
-    <div className='flex flex-row p-2.5 rounded-lg space-x-3 shadow-lg min-w-36 w-full xl:max-w-full'
-        style={{ backgroundColor: '#121212' }}>
-        <Image
-            src={defaultcoverart}
-            alt={`${track.title} album art`}
-            width={96}
-            height={96}
-            className='rounded hover:opacity-60 transition duration-300'
-        />
-        <div className='flex-1 min-w-0'>
-            <Reveal
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0, transition: { duration: 0.4, delay: 0.5 } }}
-            >
-                <div className='flex flex-row items-center justify-start space-x-2'>
-                    {(track.isPlaying || isPaused) ? <PlayingAnimation /> : ''}
-                    <div className='flex-1 min-w-0'>
-                        <p className='font-bold text-lg text-white overflow-hidden text-ellipsis whitespace-nowrap w-52 sm:w-full'>
-                            {track.title}
-                        </p>
+const LocalTrackView = ({ track, isPaused }: { track: LocalTrack, isPaused?: boolean }) => {
+    const sanitizedTitle = sanitizeSongTitle(track.title);
+    const hasExplicitLanguage = sanitizedTitle !== track.title;
+
+    return (
+        <div className='flex flex-row p-2.5 rounded-lg space-x-3 shadow-lg min-w-36 w-full xl:max-w-full'
+            style={{ backgroundColor: '#121212' }}>
+            <Image
+                src={defaultcoverart}
+                alt={`${track.title} album art`}
+                width={96}
+                height={96}
+                className='rounded hover:opacity-60 transition duration-300'
+            />
+            <div className='flex-1 min-w-0'>
+                <Reveal
+                    initial={{ opacity: 0, x: 30 }}
+                    whileInView={{ opacity: 1, x: 0, transition: { duration: 0.4, delay: 0.5 } }}
+                >
+                    <div className='flex flex-row items-center justify-start space-x-2'>
+                        {(track.isPlaying || isPaused) ? <PlayingAnimation /> : ''}
+                        <div className='flex-1 min-w-0'>
+                            <div className='flex flex-row items-center gap-2 w-52 sm:w-full min-w-0'>
+                                <p className='font-bold text-lg text-white overflow-hidden text-ellipsis whitespace-nowrap min-w-0'>
+                                    {sanitizedTitle}
+                                </p>
+                                {hasExplicitLanguage ? (
+                                    <span className='text-[10px] leading-none font-bold text-black bg-gray-200 rounded px-1.5 py-0.5 flex-shrink-0'>
+                                        E
+                                    </span>
+                                ) : null}
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </Reveal>
-            <Reveal
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0, transition: { duration: 0.4, delay: 0.6 } }}
-            >
-                <p className='text-gray-400 text-sm'>
-                    {track.artist}
-                </p>
-            </Reveal>
+                </Reveal>
+                <Reveal
+                    initial={{ opacity: 0, x: 30 }}
+                    whileInView={{ opacity: 1, x: 0, transition: { duration: 0.4, delay: 0.6 } }}
+                >
+                    <p className='text-gray-400 text-sm'>
+                        {track.artist}
+                    </p>
+                </Reveal>
+            </div>
         </div>
-    </div>
-);
+    );
+};
 
 interface NowPlayingProps {
     recentlyPlayed?: RecentlyPlayedTrack[];

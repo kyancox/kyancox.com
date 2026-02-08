@@ -32,6 +32,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       artistUrl: item.artists[0].external_urls.spotify,
       songUrl: item.external_urls.spotify,
       title: item.name,
+      explicit: item.explicit,
       previewUrl: item.preview_url,
       songUri: item.uri,
       duration: msToMinutesAndSeconds(item.duration_ms),

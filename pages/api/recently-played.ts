@@ -8,6 +8,7 @@ export type RecentlyPlayedTrack = {
   artistUrl: string;
   songUrl: string;
   title: string;
+  explicit: boolean;
   songUri: string;
   duration: string;
   album: string;
@@ -42,6 +43,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       artistUrl: item.track.artists[0].external_urls.spotify,
       songUrl: item.track.external_urls.spotify,
       title: item.track.name,
+      explicit: item.track.explicit,
       songUri: item.track.uri,
       duration: msToMinutesAndSeconds(item.track.duration_ms),
       album: item.track.album.name,

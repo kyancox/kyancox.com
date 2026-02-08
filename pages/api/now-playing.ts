@@ -22,6 +22,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const is_local : boolean = response.item.is_local
         // These fields are always present for local files
         const title = response.item.name;
+        const explicit = is_local ? false : response.item.explicit;
         const songUri = response.item.uri;
         const isPlaying = response.is_playing;
         // The following fields may be null for local files
@@ -41,6 +42,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             isPlaying,
             songUrl,
             title,
+            explicit,
             previewUrl,
             songUri
         };

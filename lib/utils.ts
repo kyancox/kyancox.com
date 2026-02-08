@@ -1,5 +1,6 @@
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
+import { Filter } from "bad-words"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -28,4 +29,18 @@ export function formatDateTime(isoString: string): string {
   } else {
     return `${diffDays}d ago, ${timeString}`;
   }
+}
+
+const profanityFilter = new Filter({ placeHolder: '*' });
+
+export function sanitizeSongTitle(title: string): string {
+  return profanityFilter.clean(title);
+}
+
+export function sanitizeExplicitSongTitle(title: string, isExplicit: boolean): string {
+  if (!isExplicit) {
+    return title;
+  }
+
+  return sanitizeSongTitle(title);
 }
